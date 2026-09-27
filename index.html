@@ -15,7 +15,6 @@ body {
     font-family: Arial, sans-serif;
     background: #f4f6f8;
     color: #222;
-    transition: 0.3s;
 }
 
 body.dark {
@@ -25,16 +24,16 @@ body.dark {
 
 button,
 input {
-    font-family: inherit;
+    font-family: Arial, sans-serif;
 }
 
-/* LOGIN */
+/* ================= LOGIN ================= */
 
 #loginPage {
     min-height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     padding: 20px;
 }
 
@@ -56,7 +55,8 @@ input {
     margin-top: 0;
 }
 
-.login-box input {
+.login-box input[type="text"],
+.login-box input[type="password"] {
     width: 100%;
     padding: 13px;
     margin: 8px 0;
@@ -75,7 +75,7 @@ input {
     width: 100%;
     padding: 13px;
     margin-top: 10px;
-    border: 0;
+    border: none;
     border-radius: 10px;
     background: #1976d2;
     color: white;
@@ -97,7 +97,7 @@ input {
     margin-top: 10px;
 }
 
-/* MAIN */
+/* ================= HEADER ================= */
 
 #mainPage,
 #reportPage {
@@ -110,7 +110,7 @@ header {
     padding: 15px;
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 20;
 }
 
 .header-inner {
@@ -134,7 +134,7 @@ header h2 {
 }
 
 .header-buttons button {
-    border: 0;
+    border: none;
     border-radius: 8px;
     padding: 9px 12px;
     cursor: pointer;
@@ -143,11 +143,14 @@ header h2 {
     font-weight: bold;
 }
 
-.container {
+.container,
+.report-container {
     max-width: 1400px;
     margin: auto;
     padding: 15px;
 }
+
+/* ================= INFO ================= */
 
 .info {
     background: white;
@@ -165,6 +168,8 @@ header h2 {
     margin-top: 8px;
     font-weight: bold;
 }
+
+/* ================= TABLE ================= */
 
 .table-wrapper {
     overflow-x: auto;
@@ -198,9 +203,6 @@ td {
 th {
     background: #1976d2;
     color: white;
-    position: sticky;
-    top: 0;
-    z-index: 2;
 }
 
 .name-column {
@@ -221,8 +223,8 @@ th.name-column {
 }
 
 .date-column {
-    min-width: 55px;
     width: 55px;
+    min-width: 55px;
 }
 
 .attendance-cell {
@@ -231,7 +233,6 @@ th.name-column {
     height: 42px;
     font-size: 18px;
     font-weight: bold;
-    cursor: text;
 }
 
 .attendance-cell.plus {
@@ -245,25 +246,14 @@ th.name-column {
 .locked {
     background: #eeeeee;
     color: #777;
-    cursor: not-allowed;
 }
 
 .dark .locked {
     background: #333;
-    color: #999;
+    color: #aaa;
 }
 
-/* REPORT */
-
-#reportPage {
-    min-height: 100vh;
-}
-
-.report-container {
-    max-width: 1400px;
-    margin: auto;
-    padding: 15px;
-}
+/* ================= REPORT ================= */
 
 .search-box {
     margin-bottom: 15px;
@@ -293,16 +283,11 @@ th.name-column {
 
 .report-tabs button {
     padding: 10px 15px;
-    border: 0;
+    border: none;
     border-radius: 9px;
     cursor: pointer;
     background: #ddd;
     font-weight: bold;
-}
-
-.report-tabs button.active {
-    background: #1976d2;
-    color: white;
 }
 
 .dark .report-tabs button {
@@ -310,8 +295,9 @@ th.name-column {
     color: white;
 }
 
-.dark .report-tabs button.active {
+.report-tabs button.active {
     background: #1976d2;
+    color: white;
 }
 
 .report-section {
@@ -322,7 +308,7 @@ th.name-column {
     display: block;
 }
 
-/* SUMMARY */
+/* ================= CARDS ================= */
 
 .summary {
     display: grid;
@@ -345,7 +331,6 @@ th.name-column {
 .card-title {
     font-size: 14px;
     color: #777;
-    margin-bottom: 6px;
 }
 
 .dark .card-title {
@@ -355,9 +340,22 @@ th.name-column {
 .card-value {
     font-size: 24px;
     font-weight: bold;
+    margin-top: 5px;
 }
 
-/* STUDENT DETAIL */
+.blue {
+    color: #1976d2;
+}
+
+.red {
+    color: #e53935;
+}
+
+.green {
+    color: #2e7d32;
+}
+
+/* ================= STUDENT DETAIL ================= */
 
 .student-detail {
     margin-top: 15px;
@@ -406,35 +404,17 @@ th.name-column {
     margin-top: 5px;
 }
 
-.blue {
-    color: #1976d2;
-}
-
-.red {
-    color: #e53935;
-}
-
-.green {
-    color: #2e7d32;
-}
-
-.no-data {
-    padding: 20px;
-    text-align: center;
-    color: #777;
-}
-
-/* MOBILE */
+/* ================= MOBILE ================= */
 
 @media (max-width: 700px) {
 
-    header h2 {
-        font-size: 17px;
+    .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .header-inner {
-        align-items: flex-start;
-        flex-direction: column;
+    header h2 {
+        font-size: 17px;
     }
 
     .header-buttons {
@@ -459,7 +439,9 @@ th.name-column {
 
 <body>
 
-<!-- LOGIN PAGE -->
+<!-- =====================================================
+     LOGIN
+===================================================== -->
 
 <div id="loginPage">
 
@@ -480,11 +462,16 @@ th.name-column {
         >
 
         <label class="remember">
-            <input type="checkbox" id="rememberLogin">
+            <input
+                type="checkbox"
+                id="rememberLogin"
+            >
             Loginni eslab qolish
         </label>
 
-        <button onclick="login()">Kirish</button>
+        <button id="loginButton">
+            Kirish
+        </button>
 
         <div id="loginError"></div>
 
@@ -493,7 +480,9 @@ th.name-column {
 </div>
 
 
-<!-- MAIN PAGE -->
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
 <div id="mainPage">
 
@@ -505,15 +494,15 @@ th.name-column {
 
         <div class="header-buttons">
 
-            <button onclick="openReport()">
+            <button id="reportButton">
                 📊 Hisobot
             </button>
 
-            <button onclick="toggleDark()">
+            <button id="darkButton">
                 🌙 Dark
             </button>
 
-            <button onclick="logout()">
+            <button id="logoutButton">
                 🚪 Chiqish
             </button>
 
@@ -534,10 +523,17 @@ th.name-column {
         <br><br>
 
         <b>Belgilar:</b>
-        <span class="blue">+</span> Keldi
+
+        <span class="blue">+</span>
+        Keldi
+
         &nbsp;&nbsp;
-        <span class="red">-</span> Qoldirdi
+
+        <span class="red">-</span>
+        Qoldirdi
+
         &nbsp;&nbsp;
+
         🔒 Dam olish / bayram
 
         <div
@@ -552,7 +548,7 @@ th.name-column {
 
     <div class="table-wrapper">
 
-        <table id="attendanceTable">
+        <table>
 
             <thead>
 
@@ -579,7 +575,9 @@ th.name-column {
 </div>
 
 
-<!-- REPORT PAGE -->
+<!-- =====================================================
+     REPORT
+===================================================== -->
 
 <div id="reportPage">
 
@@ -591,11 +589,11 @@ th.name-column {
 
         <div class="header-buttons">
 
-            <button onclick="closeReport()">
+            <button id="backButton">
                 ← Ortga
             </button>
 
-            <button onclick="toggleDark()">
+            <button id="reportDarkButton">
                 🌙 Dark
             </button>
 
@@ -608,7 +606,7 @@ th.name-column {
 
 <div class="report-container">
 
-    <!-- SEARCH -->
+    <!-- QIDIRUV -->
 
     <div class="search-box">
 
@@ -616,7 +614,6 @@ th.name-column {
             type="text"
             id="studentSearch"
             placeholder="🔎 O‘quvchini qidiring..."
-            oninput="renderReport()"
         >
 
     </div>
@@ -629,36 +626,26 @@ th.name-column {
         <button
             id="tabStudents"
             class="active"
-            onclick="showReportTab('students')"
         >
             👨‍🎓 O‘quvchilar
         </button>
 
-        <button
-            id="tabDaily"
-            onclick="showReportTab('daily')"
-        >
+        <button id="tabDaily">
             📅 Kunlik
         </button>
 
-        <button
-            id="tabWeekly"
-            onclick="showReportTab('weekly')"
-        >
+        <button id="tabWeekly">
             📆 Haftalik
         </button>
 
-        <button
-            id="tabMonthly"
-            onclick="showReportTab('monthly')"
-        >
+        <button id="tabMonthly">
             🗓️ Oylik
         </button>
 
     </div>
 
 
-    <!-- O‘QUVCHILAR -->
+    <!-- ================= O‘QUVCHILAR ================= -->
 
     <div
         id="studentsSection"
@@ -668,6 +655,7 @@ th.name-column {
         <div class="summary">
 
             <div class="card">
+
                 <div class="card-title">
                     👨‍🎓 O‘quvchilar
                 </div>
@@ -678,6 +666,7 @@ th.name-column {
                 >
                     0
                 </div>
+
             </div>
 
 
@@ -760,7 +749,7 @@ th.name-column {
         </div>
 
 
-        <!-- SELECTED STUDENT DETAIL -->
+        <!-- O‘QUVCHI TANLANGANDA -->
 
         <div
             id="studentDetail"
@@ -906,7 +895,7 @@ th.name-column {
     </div>
 
 
-    <!-- KUNLIK -->
+    <!-- ================= KUNLIK ================= -->
 
     <div
         id="dailySection"
@@ -939,7 +928,7 @@ th.name-column {
     </div>
 
 
-    <!-- HAFTALIK -->
+    <!-- ================= HAFTALIK ================= -->
 
     <div
         id="weeklySection"
@@ -972,7 +961,7 @@ th.name-column {
     </div>
 
 
-    <!-- OYLIK -->
+    <!-- ================= OYLIK ================= -->
 
     <div
         id="monthlySection"
@@ -1009,27 +998,34 @@ th.name-column {
 </div>
 
 
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
 <script type="module">
 
-/* =========================================
+/* =====================================================
    FIREBASE
-========================================= */
+===================================================== */
 
 import {
     initializeApp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
     getDatabase,
     ref,
     onValue,
     set
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 
 const firebaseConfig = {
 
-    apiKey: "AIzaSyAo-tioaUvivf965VRhRjJao-WXyU0AVTY",
+    apiKey:
+        "AIzaSyAo-tioaUvivf965VRhRjJao-WXyU0AVTY",
 
     authDomain:
         "davomat-jurnali.firebaseapp.com",
@@ -1054,76 +1050,54 @@ const firebaseConfig = {
 };
 
 
-const app = initializeApp(firebaseConfig);
+const app =
+    initializeApp(firebaseConfig);
 
-const db = getDatabase(app);
+const db =
+    getDatabase(app);
 
 const attendanceRef =
     ref(db, "davomat_jurnali");
 
 
-/* =========================================
+/* =====================================================
    O‘QUVCHILAR
-========================================= */
+===================================================== */
 
 const students = [
 
     "Abdumannobova Ruqiyaxon",
-
     "Abdumutallibov Muhammadali",
-
     "Abdug‘afforova Muslimaxon",
-
     "Abvarova Muharram",
-
     "Arabbekova Ruqiyaxon",
-
     "Baxromova Xabibaxon",
-
     "Baxodirjonova Kimyoxon",
-
     "Habibullayev Abdulloh",
-
     "Ibroximova Mo'minaxon",
-
     "Jo'rayev Hikmatillo",
-
     "Komilova Oydinoy",
-
     "Komilova Rayyona",
-
     "Muhammadsidiqova Shaxodatxon",
-
     "Muqimjonova Muzayyanaxon",
-
     "Muhammadkomilov Abduraxmon",
-
     "Nishonboyeva Mo'mina ",
-
     "O'ktamov Rahmatillo",
-
     "Oribjonova Robiyaxon",
-
     "Qosimova Rayyona",
-
     "Soyibjonov Abduqodir",
-
     "Soyibjonova Mohlaroy",
-
     "Ubaydullayeva Bibisora",
-
     "Yaqubov Abdulboriy",
-
     "Yuldasheva Muhlisaxon",
-
     "Yuldasheva Muhlisaxon"
 
 ];
 
 
-/* =========================================
-   O‘QUV YILI
-========================================= */
+/* =====================================================
+   SANALAR
+===================================================== */
 
 const startDate =
     new Date("2026-09-28T00:00:00");
@@ -1132,32 +1106,26 @@ const endDate =
     new Date("2027-05-25T00:00:00");
 
 
-/* =========================================
-   HAFTA KUNLARI BO‘YICHA DARSLAR
-========================================= */
+/* =====================================================
+   HAR KUNDA NECHTA DARS
+===================================================== */
 
 const lessonsPerDay = {
 
+    0: 0, // Yakshanba
     1: 5, // Dushanba
-
     2: 6, // Seshanba
-
     3: 6, // Chorshanba
-
     4: 5, // Payshanba
-
     5: 6, // Juma
-
-    6: 4, // Shanba
-
-    0: 0  // Yakshanba
+    6: 4  // Shanba
 
 };
 
 
-/* =========================================
+/* =====================================================
    BAYRAMLAR
-========================================= */
+===================================================== */
 
 const holidays = {
 
@@ -1182,9 +1150,9 @@ const holidays = {
 };
 
 
-/* =========================================
+/* =====================================================
    TA’TILLAR
-========================================= */
+===================================================== */
 
 const vacations = [
 
@@ -1209,16 +1177,16 @@ const vacations = [
 ];
 
 
-/* =========================================
-   DATA
-========================================= */
+/* =====================================================
+   DAVOMAT MA’LUMOTI
+===================================================== */
 
 let attendanceData = {};
 
 
-/* =========================================
+/* =====================================================
    LOGIN
-========================================= */
+===================================================== */
 
 const LOGIN =
     "abdulloh04072009";
@@ -1230,13 +1198,16 @@ const PASSWORD =
 function login() {
 
     const username =
-        document.getElementById("username").value.trim();
+        document.getElementById("username")
+        .value.trim();
 
     const password =
-        document.getElementById("password").value;
+        document.getElementById("password")
+        .value;
 
     const remember =
-        document.getElementById("rememberLogin").checked;
+        document.getElementById("rememberLogin")
+        .checked;
 
 
     if (
@@ -1312,19 +1283,19 @@ function showMain() {
     ).style.display = "none";
 
     document.getElementById(
-        "mainPage"
-    ).style.display = "block";
-
-    document.getElementById(
         "reportPage"
     ).style.display = "none";
+
+    document.getElementById(
+        "mainPage"
+    ).style.display = "block";
 
 }
 
 
-/* =========================================
+/* =====================================================
    DARK MODE
-========================================= */
+===================================================== */
 
 function toggleDark() {
 
@@ -1334,62 +1305,49 @@ function toggleDark() {
 
     localStorage.setItem(
         "davomat_dark",
-        document.body.classList.contains(
-            "dark"
-        )
+        document.body.classList.contains("dark")
     );
 
 }
 
 
-if (
-    localStorage.getItem(
-        "davomat_dark"
-    ) === "true"
-) {
-
-    document.body.classList.add("dark");
-
-}
-
-
-/* =========================================
-   SANANI FORMAT QILISH
-========================================= */
+/* =====================================================
+   SANANI KEY QILISH
+===================================================== */
 
 function dateKey(date) {
 
-    const y =
+    const year =
         date.getFullYear();
 
-    const m =
+    const month =
         String(
             date.getMonth() + 1
         ).padStart(2, "0");
 
-    const d =
+    const day =
         String(
             date.getDate()
         ).padStart(2, "0");
 
-    return `${y}-${m}-${d}`;
+    return `${year}-${month}-${day}`;
 
 }
 
 
-function formatDate(dateString) {
+function formatDate(value) {
 
-    const parts =
-        dateString.split("-");
+    const p =
+        value.split("-");
 
-    return `${parts[2]}.${parts[1]}.${parts[0]}`;
+    return `${p[2]}.${p[1]}.${p[0]}`;
 
 }
 
 
-/* =========================================
-   TA’TILNI TEKSHIRISH
-========================================= */
+/* =====================================================
+   LOCK TEKSHIRISH
+===================================================== */
 
 function getLockReason(dateString) {
 
@@ -1399,27 +1357,21 @@ function getLockReason(dateString) {
         );
 
 
-    if (
-        date.getDay() === 0
-    ) {
+    if (date.getDay() === 0) {
 
         return "Yakshanba";
 
     }
 
 
-    if (
-        holidays[dateString]
-    ) {
+    if (holidays[dateString]) {
 
         return holidays[dateString];
 
     }
 
 
-    for (
-        const vacation of vacations
-    ) {
+    for (const vacation of vacations) {
 
         if (
             dateString >= vacation.start &&
@@ -1438,23 +1390,21 @@ function getLockReason(dateString) {
 }
 
 
-/* =========================================
+/* =====================================================
    SANALAR GENERATSIYASI
-========================================= */
+===================================================== */
 
 function generateDates() {
 
-    const dates = [];
+    const result = [];
 
-    let current =
+    const current =
         new Date(startDate);
 
 
-    while (
-        current <= endDate
-    ) {
+    while (current <= endDate) {
 
-        dates.push(
+        result.push(
             dateKey(current)
         );
 
@@ -1465,7 +1415,7 @@ function generateDates() {
     }
 
 
-    return dates;
+    return result;
 
 }
 
@@ -1474,9 +1424,64 @@ const dates =
     generateDates();
 
 
-/* =========================================
-   JADVALNI CHIZISH
-========================================= */
+/* =====================================================
+   DAVOMATNI OLISH
+===================================================== */
+
+function getAttendance(
+    dateString,
+    studentIndex
+) {
+
+    if (!attendanceData[dateString]) {
+
+        return "";
+
+    }
+
+
+    return (
+        attendanceData[dateString][studentIndex]
+        || ""
+    );
+
+}
+
+
+/* =====================================================
+   CELL RANGI
+===================================================== */
+
+function updateCellColor(
+    cell,
+    value
+) {
+
+    cell.classList.remove(
+        "plus",
+        "minus"
+    );
+
+
+    if (value === "+") {
+
+        cell.classList.add("plus");
+
+    }
+
+
+    if (value === "-") {
+
+        cell.classList.add("minus");
+
+    }
+
+}
+
+
+/* =====================================================
+   JADVAL
+===================================================== */
 
 function renderTable() {
 
@@ -1492,34 +1497,27 @@ function renderTable() {
 
 
     header.innerHTML = `
-
         <th>№</th>
-
         <th class="name-column">
             Ism va Familya
         </th>
-
     `;
 
 
-    dates.forEach(
-        dateString => {
+    dates.forEach(dateString => {
 
-            const th =
-                document.createElement(
-                    "th"
-                );
+        const th =
+            document.createElement("th");
 
-            th.className =
-                "date-column";
+        th.className =
+            "date-column";
 
-            th.textContent =
-                formatDate(dateString);
+        th.textContent =
+            formatDate(dateString);
 
-            header.appendChild(th);
+        header.appendChild(th);
 
-        }
-    );
+    });
 
 
     body.innerHTML = "";
@@ -1529,24 +1527,18 @@ function renderTable() {
         (student, studentIndex) => {
 
             const tr =
-                document.createElement(
-                    "tr"
-                );
+                document.createElement("tr");
 
 
             const number =
-                document.createElement(
-                    "td"
-                );
+                document.createElement("td");
 
             number.textContent =
                 studentIndex + 1;
 
 
             const name =
-                document.createElement(
-                    "td"
-                );
+                document.createElement("td");
 
             name.className =
                 "name-column";
@@ -1556,135 +1548,123 @@ function renderTable() {
 
 
             tr.appendChild(number);
-
             tr.appendChild(name);
 
 
-            dates.forEach(
-                dateString => {
+            dates.forEach(dateString => {
 
-                    const td =
-                        document.createElement(
-                            "td"
+                const td =
+                    document.createElement("td");
+
+                td.className =
+                    "attendance-cell";
+
+
+                const lock =
+                    getLockReason(
+                        dateString
+                    );
+
+
+                if (lock) {
+
+                    td.classList.add(
+                        "locked"
+                    );
+
+                    td.textContent =
+                        "🔒";
+
+                    td.title =
+                        lock;
+
+                } else {
+
+                    td.contentEditable =
+                        "true";
+
+                    td.spellcheck =
+                        false;
+
+
+                    const saved =
+                        getAttendance(
+                            dateString,
+                            studentIndex
                         );
 
-                    td.className =
-                        "attendance-cell";
 
-
-                    const lockReason =
-                        getLockReason(
-                            dateString
-                        );
-
-
-                    if (lockReason) {
-
-                        td.classList.add(
-                            "locked"
-                        );
+                    if (saved) {
 
                         td.textContent =
-                            "🔒";
+                            saved;
 
-                        td.title =
-                            lockReason;
-
-                    } else {
-
-                        td.contentEditable =
-                            "true";
-
-                        td.spellcheck =
-                            false;
-
-                        const saved =
-                            getAttendance(
-                                dateString,
-                                studentIndex
-                            );
-
-
-                        if (saved) {
-
-                            td.textContent =
-                                saved;
-
-                            updateCellColor(
-                                td,
-                                saved
-                            );
-
-                        }
-
-
-                        td.addEventListener(
-                            "input",
-                            function() {
-
-                                let value =
-                                    td.textContent
-                                    .trim();
-
-                                if (
-                                    value !== "+" &&
-                                    value !== "-"
-                                ) {
-
-                                    value = "";
-
-                                    td.textContent =
-                                        "";
-
-                                }
-
-
-                                attendanceData[
-                                    dateString
-                                ] =
-                                    attendanceData[
-                                        dateString
-                                    ] || {};
-
-
-                                attendanceData[
-                                    dateString
-                                ][
-                                    studentIndex
-                                ] =
-                                    value;
-
-
-                                updateCellColor(
-                                    td,
-                                    value
-                                );
-
-
-                                saveData();
-
-                                if (
-                                    document
-                                    .getElementById(
-                                        "reportPage"
-                                    ).style.display !==
-                                    "none"
-                                ) {
-
-                                    renderReport();
-
-                                }
-
-                            }
+                        updateCellColor(
+                            td,
+                            saved
                         );
 
                     }
 
 
-                    tr.appendChild(td);
+                    td.addEventListener(
+                        "input",
+                        function() {
+
+                            let value =
+                                td.textContent
+                                .trim();
+
+
+                            if (
+                                value !== "+" &&
+                                value !== "-"
+                            ) {
+
+                                value = "";
+
+                                td.textContent =
+                                    "";
+
+                            }
+
+
+                            if (
+                                !attendanceData[
+                                    dateString
+                                ]
+                            ) {
+
+                                attendanceData[
+                                    dateString
+                                ] = {};
+
+                            }
+
+
+                            attendanceData[
+                                dateString
+                            ][studentIndex] =
+                                value;
+
+
+                            updateCellColor(
+                                td,
+                                value
+                            );
+
+
+                            saveData();
+
+                        }
+                    );
 
                 }
-            );
+
+
+                tr.appendChild(td);
+
+            });
 
 
             body.appendChild(tr);
@@ -1695,71 +1675,9 @@ function renderTable() {
 }
 
 
-/* =========================================
-   CELL RANGI
-========================================= */
-
-function updateCellColor(
-    cell,
-    value
-) {
-
-    cell.classList.remove(
-        "plus",
-        "minus"
-    );
-
-
-    if (value === "+") {
-
-        cell.classList.add(
-            "plus"
-        );
-
-    }
-
-
-    if (value === "-") {
-
-        cell.classList.add(
-            "minus"
-        );
-
-    }
-
-}
-
-
-/* =========================================
-   ATTENDANCE OLISH
-========================================= */
-
-function getAttendance(
-    dateString,
-    studentIndex
-) {
-
-    if (
-        !attendanceData[dateString]
-    ) {
-
-        return "";
-
-    }
-
-
-    return (
-        attendanceData[
-            dateString
-        ][studentIndex] || ""
-    );
-
-}
-
-
-/* =========================================
+/* =====================================================
    FIREBASE SAQLASH
-========================================= */
+===================================================== */
 
 function saveData() {
 
@@ -1777,9 +1695,9 @@ function saveData() {
 }
 
 
-/* =========================================
-   FIREBASE O‘QISH
-========================================= */
+/* =====================================================
+   FIREBASE
+===================================================== */
 
 onValue(
     attendanceRef,
@@ -1816,7 +1734,7 @@ onValue(
         if (
             document.getElementById(
                 "reportPage"
-            ).style.display !== "none"
+            ).style.display === "block"
         ) {
 
             renderReport();
@@ -1837,9 +1755,9 @@ onValue(
 );
 
 
-/* =========================================
+/* =====================================================
    HISOBOTNI OCHISH
-========================================= */
+===================================================== */
 
 function openReport() {
 
@@ -1852,10 +1770,24 @@ function openReport() {
     ).style.display = "block";
 
 
-    renderReport();
+    document.getElementById(
+        "studentSearch"
+    ).value = "";
+
+
+    document.getElementById(
+        "studentDetail"
+    ).style.display = "none";
+
+
+    showReportTab("students");
 
 }
 
+
+/* =====================================================
+   HISOBOTNI YOPISH
+===================================================== */
 
 function closeReport() {
 
@@ -1870,56 +1802,45 @@ function closeReport() {
 }
 
 
-/* =========================================
-   HISOBOT TABLARI
-========================================= */
+/* =====================================================
+   TAB
+===================================================== */
 
 function showReportTab(tab) {
 
-    document
-        .querySelectorAll(
-            ".report-section"
-        )
-        .forEach(
-            section => {
-
-                section.classList.remove(
-                    "active"
-                );
-
-            }
-        );
+    const sections = [
+        "students",
+        "daily",
+        "weekly",
+        "monthly"
+    ];
 
 
-    document
-        .querySelectorAll(
-            ".report-tabs button"
-        )
-        .forEach(
-            button => {
+    sections.forEach(name => {
 
-                button.classList.remove(
-                    "active"
-                );
+        document.getElementById(
+            name + "Section"
+        ).classList.remove("active");
 
-            }
-        );
+        document.getElementById(
+            "tab" +
+            name.charAt(0).toUpperCase() +
+            name.slice(1)
+        ).classList.remove("active");
+
+    });
 
 
     document.getElementById(
         tab + "Section"
-    ).classList.add(
-        "active"
-    );
+    ).classList.add("active");
 
 
     document.getElementById(
         "tab" +
         tab.charAt(0).toUpperCase() +
         tab.slice(1)
-    ).classList.add(
-        "active"
-    );
+    ).classList.add("active");
 
 
     renderReport();
@@ -1927,78 +1848,66 @@ function showReportTab(tab) {
 }
 
 
-/* =========================================
-   O‘QUVCHI HISOBOTI
-========================================= */
+/* =====================================================
+   O‘QUVCHI UMUMIY HISOBI
+===================================================== */
 
-function getStudentStats(
-    studentIndex
-) {
+function getStudentStats(index) {
 
     let plus = 0;
-
     let minus = 0;
 
 
-    dates.forEach(
-        dateString => {
+    dates.forEach(dateString => {
 
-            if (
-                getLockReason(
-                    dateString
-                )
-            ) {
+        if (
+            getLockReason(dateString)
+        ) {
 
-                return;
-
-            }
-
-
-            const value =
-                getAttendance(
-                    dateString,
-                    studentIndex
-                );
-
-
-            if (value === "+") {
-
-                plus++;
-
-            }
-
-
-            if (value === "-") {
-
-                minus++;
-
-            }
+            return;
 
         }
-    );
+
+
+        const value =
+            getAttendance(
+                dateString,
+                index
+            );
+
+
+        if (value === "+") {
+
+            plus++;
+
+        }
+
+
+        if (value === "-") {
+
+            minus++;
+
+        }
+
+    });
 
 
     return {
 
-        plus,
-
-        minus,
-
-        total:
-            plus + minus
+        plus: plus,
+        minus: minus,
+        total: plus + minus
 
     };
 
 }
 
 
-/* =========================================
-   HAFTA BOSHLANISHI
-========================================= */
+/* =====================================================
+   HAFTA BOSHI
+===================================================== */
 
-function getMonday(
-    date
-) {
+function getMonday(date) {
 
     const result =
         new Date(date);
@@ -2007,14 +1916,14 @@ function getMonday(
         result.getDay();
 
 
-    const diff =
+    const difference =
         day === 0
             ? -6
             : 1 - day;
 
 
     result.setDate(
-        result.getDate() + diff
+        result.getDate() + difference
     );
 
 
@@ -2028,20 +1937,18 @@ function getMonday(
 }
 
 
-/* =========================================
-   O‘QUVCHINING HAFTALIK HISOBOTI
-========================================= */
+/* =====================================================
+   TANLANGAN O‘QUVCHINING SHU HAFTASI
+===================================================== */
 
-function getStudentWeekStats(
-    studentIndex
-) {
+function getStudentWeekStats(index) {
 
-    const now =
+    const today =
         new Date();
 
 
     const monday =
-        getMonday(now);
+        getMonday(today);
 
 
     const saturday =
@@ -2049,240 +1956,198 @@ function getStudentWeekStats(
 
 
     saturday.setDate(
-        monday.getDate() + 5
+        saturday.getDate() + 5
     );
 
 
     let plus = 0;
-
     let minus = 0;
-
     let total = 0;
 
 
-    dates.forEach(
-        dateString => {
+    dates.forEach(dateString => {
 
-            const date =
-                new Date(
-                    dateString +
-                    "T00:00:00"
-                );
+        const date =
+            new Date(
+                dateString + "T00:00:00"
+            );
 
 
-            if (
-                date < monday ||
-                date > saturday
-            ) {
+        if (
+            date < monday ||
+            date > saturday
+        ) {
 
-                return;
-
-            }
-
-
-            const lock =
-                getLockReason(
-                    dateString
-                );
-
-
-            if (lock) {
-
-                return;
-
-            }
-
-
-            const day =
-                date.getDay();
-
-
-            const lessonCount =
-                lessonsPerDay[day] || 0;
-
-
-            const value =
-                getAttendance(
-                    dateString,
-                    studentIndex
-                );
-
-
-            if (value === "+") {
-
-                plus += lessonCount;
-
-            }
-
-
-            if (value === "-") {
-
-                minus += lessonCount;
-
-            }
-
-
-            if (value === "+" ||
-                value === "-"
-            ) {
-
-                total += lessonCount;
-
-            }
+            return;
 
         }
-    );
+
+
+        if (
+            getLockReason(dateString)
+        ) {
+
+            return;
+
+        }
+
+
+        const lessonCount =
+            lessonsPerDay[
+                date.getDay()
+            ] || 0;
+
+
+        const value =
+            getAttendance(
+                dateString,
+                index
+            );
+
+
+        if (value === "+") {
+
+            plus += lessonCount;
+
+        }
+
+
+        if (value === "-") {
+
+            minus += lessonCount;
+
+        }
+
+
+        if (
+            value === "+" ||
+            value === "-"
+        ) {
+
+            total += lessonCount;
+
+        }
+
+    });
 
 
     return {
-
         plus,
-
         minus,
-
         total
-
     };
 
 }
 
 
-/* =========================================
-   O‘QUVCHINING OYLIK HISOBOTI
-========================================= */
+/* =====================================================
+   TANLANGAN O‘QUVCHINING SHU OYI
+===================================================== */
 
-function getStudentMonthStats(
-    studentIndex
-) {
+function getStudentMonthStats(index) {
 
-    const now =
+    const today =
         new Date();
 
 
     const year =
-        now.getFullYear();
+        today.getFullYear();
 
     const month =
-        now.getMonth();
+        today.getMonth();
 
 
     let plus = 0;
-
     let minus = 0;
-
     let total = 0;
 
 
-    dates.forEach(
-        dateString => {
+    dates.forEach(dateString => {
 
-            const date =
-                new Date(
-                    dateString +
-                    "T00:00:00"
-                );
+        const date =
+            new Date(
+                dateString + "T00:00:00"
+            );
 
 
-            if (
-                date.getFullYear() !== year ||
-                date.getMonth() !== month
-            ) {
+        if (
+            date.getFullYear() !== year ||
+            date.getMonth() !== month
+        ) {
 
-                return;
-
-            }
-
-
-            const lock =
-                getLockReason(
-                    dateString
-                );
-
-
-            if (lock) {
-
-                return;
-
-            }
-
-
-            const day =
-                date.getDay();
-
-
-            const lessonCount =
-                lessonsPerDay[day] || 0;
-
-
-            const value =
-                getAttendance(
-                    dateString,
-                    studentIndex
-                );
-
-
-            if (value === "+") {
-
-                plus += lessonCount;
-
-            }
-
-
-            if (value === "-") {
-
-                minus += lessonCount;
-
-            }
-
-
-            if (
-                value === "+" ||
-                value === "-"
-            ) {
-
-                total += lessonCount;
-
-            }
+            return;
 
         }
-    );
+
+
+        if (
+            getLockReason(dateString)
+        ) {
+
+            return;
+
+        }
+
+
+        const lessonCount =
+            lessonsPerDay[
+                date.getDay()
+            ] || 0;
+
+
+        const value =
+            getAttendance(
+                dateString,
+                index
+            );
+
+
+        if (value === "+") {
+
+            plus += lessonCount;
+
+        }
+
+
+        if (value === "-") {
+
+            minus += lessonCount;
+
+        }
+
+
+        if (
+            value === "+" ||
+            value === "-"
+        ) {
+
+            total += lessonCount;
+
+        }
+
+    });
 
 
     return {
-
         plus,
-
         minus,
-
         total
-
     };
 
 }
 
 
-/* =========================================
-   O‘QUVCHI DETAIL KO‘RSATISH
-========================================= */
+/* =====================================================
+   O‘QUVCHI DETAIL
+===================================================== */
 
-function showStudentDetail(
-    studentIndex
-) {
-
-    const student =
-        students[studentIndex];
-
+function showStudentDetail(index) {
 
     const week =
-        getStudentWeekStats(
-            studentIndex
-        );
-
+        getStudentWeekStats(index);
 
     const month =
-        getStudentMonthStats(
-            studentIndex
-        );
+        getStudentMonthStats(index);
 
 
     document.getElementById(
@@ -2293,7 +2158,7 @@ function showStudentDetail(
     document.getElementById(
         "selectedStudentName"
     ).textContent =
-        "👨‍🎓 " + student;
+        "👨‍🎓 " + students[index];
 
 
     document.getElementById(
@@ -2321,7 +2186,7 @@ function showStudentDetail(
                 week.total *
                 100
             ).toFixed(1)
-            : 0;
+            : "0.0";
 
 
     document.getElementById(
@@ -2355,7 +2220,7 @@ function showStudentDetail(
                 month.total *
                 100
             ).toFixed(1)
-            : 0;
+            : "0.0";
 
 
     document.getElementById(
@@ -2366,9 +2231,9 @@ function showStudentDetail(
 }
 
 
-/* =========================================
+/* =====================================================
    ASOSIY HISOBOT
-========================================= */
+===================================================== */
 
 function renderReport() {
 
@@ -2380,17 +2245,16 @@ function renderReport() {
         .trim();
 
 
-    const reportBody =
+    const body =
         document.getElementById(
             "reportBody"
         );
 
 
-    reportBody.innerHTML = "";
+    body.innerHTML = "";
 
 
     let totalPlus = 0;
-
     let totalMinus = 0;
 
 
@@ -2398,9 +2262,7 @@ function renderReport() {
         (student, index) => {
 
             const stats =
-                getStudentStats(
-                    index
-                );
+                getStudentStats(index);
 
 
             totalPlus +=
@@ -2423,19 +2285,21 @@ function renderReport() {
 
 
             const tr =
-                document.createElement(
-                    "tr"
-                );
+                document.createElement("tr");
 
 
             tr.style.cursor =
                 "pointer";
 
 
-            tr.onclick =
-                () => showStudentDetail(
-                    index
-                );
+            tr.addEventListener(
+                "click",
+                function() {
+
+                    showStudentDetail(index);
+
+                }
+            );
 
 
             tr.innerHTML = `
@@ -2463,7 +2327,7 @@ function renderReport() {
             `;
 
 
-            reportBody.appendChild(tr);
+            body.appendChild(tr);
 
         }
     );
@@ -2502,9 +2366,9 @@ function renderReport() {
 }
 
 
-/* =========================================
+/* =====================================================
    KUNLIK HISOBOT
-========================================= */
+===================================================== */
 
 function renderDailyReport() {
 
@@ -2517,103 +2381,94 @@ function renderDailyReport() {
     body.innerHTML = "";
 
 
-    dates.forEach(
-        dateString => {
+    dates.forEach(dateString => {
 
-            if (
-                getLockReason(
-                    dateString
-                )
-            ) {
+        if (
+            getLockReason(dateString)
+        ) {
 
-                return;
-
-            }
-
-
-            let plus = 0;
-
-            let minus = 0;
-
-
-            students.forEach(
-                (_, index) => {
-
-                    const value =
-                        getAttendance(
-                            dateString,
-                            index
-                        );
-
-
-                    if (value === "+") {
-
-                        plus++;
-
-                    }
-
-
-                    if (value === "-") {
-
-                        minus++;
-
-                    }
-
-                }
-            );
-
-
-            const total =
-                plus + minus;
-
-
-            if (total === 0) {
-
-                return;
-
-            }
-
-
-            const tr =
-                document.createElement(
-                    "tr"
-                );
-
-
-            tr.innerHTML = `
-
-                <td>
-                    ${formatDate(
-                        dateString
-                    )}
-                </td>
-
-                <td class="blue">
-                    ${plus}
-                </td>
-
-                <td class="red">
-                    ${minus}
-                </td>
-
-                <td>
-                    ${total}
-                </td>
-
-            `;
-
-
-            body.appendChild(tr);
+            return;
 
         }
-    );
+
+
+        let plus = 0;
+        let minus = 0;
+
+
+        students.forEach(
+            (_, index) => {
+
+                const value =
+                    getAttendance(
+                        dateString,
+                        index
+                    );
+
+
+                if (value === "+") {
+
+                    plus++;
+
+                }
+
+
+                if (value === "-") {
+
+                    minus++;
+
+                }
+
+            }
+        );
+
+
+        const total =
+            plus + minus;
+
+
+        if (total === 0) {
+
+            return;
+
+        }
+
+
+        const tr =
+            document.createElement("tr");
+
+
+        tr.innerHTML = `
+
+            <td>
+                ${formatDate(dateString)}
+            </td>
+
+            <td class="blue">
+                ${plus}
+            </td>
+
+            <td class="red">
+                ${minus}
+            </td>
+
+            <td>
+                ${total}
+            </td>
+
+        `;
+
+
+        body.appendChild(tr);
+
+    });
 
 }
 
 
-/* =========================================
+/* =====================================================
    HAFTALIK HISOBOT
-========================================= */
+===================================================== */
 
 function renderWeeklyReport() {
 
@@ -2629,234 +2484,183 @@ function renderWeeklyReport() {
     const weeks = {};
 
 
-    dates.forEach(
-        dateString => {
+    dates.forEach(dateString => {
 
-            const lock =
-                getLockReason(
-                    dateString
-                );
+        if (
+            getLockReason(dateString)
+        ) {
+
+            return;
+
+        }
 
 
-            if (lock) {
+        const date =
+            new Date(
+                dateString + "T00:00:00"
+            );
+
+
+        const monday =
+            getMonday(date);
+
+
+        const key =
+            dateKey(monday);
+
+
+        if (!weeks[key]) {
+
+            weeks[key] = {
+
+                plus: 0,
+                minus: 0,
+                total: 0
+
+            };
+
+        }
+
+
+        const lessons =
+            lessonsPerDay[
+                date.getDay()
+            ] || 0;
+
+
+        students.forEach(
+            (_, index) => {
+
+                const value =
+                    getAttendance(
+                        dateString,
+                        index
+                    );
+
+
+                if (value === "+") {
+
+                    weeks[key].plus +=
+                        lessons;
+
+                }
+
+
+                if (value === "-") {
+
+                    weeks[key].minus +=
+                        lessons;
+
+                }
+
+
+                if (
+                    value === "+" ||
+                    value === "-"
+                ) {
+
+                    weeks[key].total +=
+                        lessons;
+
+                }
+
+            }
+        );
+
+    });
+
+
+    Object.keys(weeks)
+        .sort()
+        .forEach(key => {
+
+            const data =
+                weeks[key];
+
+
+            if (data.total === 0) {
 
                 return;
 
             }
 
 
-            const date =
+            const monday =
                 new Date(
-                    dateString +
-                    "T00:00:00"
+                    key + "T00:00:00"
                 );
 
 
-            const monday =
-                getMonday(date);
+            const saturday =
+                new Date(monday);
 
 
-            const mondayKey =
-                dateKey(monday);
-
-
-            if (
-                !weeks[mondayKey]
-            ) {
-
-                weeks[mondayKey] = {
-
-                    plus: 0,
-
-                    minus: 0,
-
-                    total: 0
-
-                };
-
-            }
-
-
-            const day =
-                date.getDay();
-
-
-            const lessonCount =
-                lessonsPerDay[day] || 0;
-
-
-            students.forEach(
-                (_, index) => {
-
-                    const value =
-                        getAttendance(
-                            dateString,
-                            index
-                        );
-
-
-                    if (value === "+") {
-
-                        weeks[
-                            mondayKey
-                        ].plus +=
-                            lessonCount;
-
-                    }
-
-
-                    if (value === "-") {
-
-                        weeks[
-                            mondayKey
-                        ].minus +=
-                            lessonCount;
-
-                    }
-
-
-                    if (
-                        value === "+" ||
-                        value === "-"
-                    ) {
-
-                        weeks[
-                            mondayKey
-                        ].total +=
-                            lessonCount;
-
-                    }
-
-                }
+            saturday.setDate(
+                saturday.getDate() + 5
             );
 
-        }
-    );
+
+            const tr =
+                document.createElement("tr");
 
 
-    Object.keys(weeks)
-        .sort()
-        .forEach(
-            mondayKey => {
+            tr.innerHTML = `
 
-                const monday =
-                    new Date(
-                        mondayKey +
-                        "T00:00:00"
-                    );
+                <td>
+                    ${formatDate(key)}
+                    —
+                    ${formatDate(
+                        dateKey(saturday)
+                    )}
+                </td>
 
+                <td class="blue">
+                    ${data.plus}
+                </td>
 
-                const saturday =
-                    new Date(monday);
+                <td class="red">
+                    ${data.minus}
+                </td>
 
+                <td>
+                    ${data.total}
+                </td>
 
-                saturday.setDate(
-                    monday.getDate() + 5
-                );
-
-
-                const data =
-                    weeks[mondayKey];
-
-
-                if (data.total === 0) {
-
-                    return;
-
-                }
+            `;
 
 
-                const tr =
-                    document.createElement(
-                        "tr"
-                    );
+            body.appendChild(tr);
 
-
-                tr.innerHTML = `
-
-                    <td>
-                        ${formatDate(
-                            dateKey(monday)
-                        )}
-                        —
-                        ${formatDate(
-                            dateKey(saturday)
-                        )}
-                    </td>
-
-                    <td class="blue">
-                        ${data.plus}
-                    </td>
-
-                    <td class="red">
-                        ${data.minus}
-                    </td>
-
-                    <td>
-                        ${data.total}
-                    </td>
-
-                `;
-
-
-                body.appendChild(tr);
-
-            }
-        );
+        });
 
 }
 
 
-/* =========================================
-   OY NOMI
-========================================= */
+/* =====================================================
+   OY NOMLARI
+===================================================== */
 
-function getMonthName(
-    year,
-    month
-) {
+const monthNames = [
 
-    const names = [
+    "Yanvar",
+    "Fevral",
+    "Mart",
+    "Aprel",
+    "May",
+    "Iyun",
+    "Iyul",
+    "Avgust",
+    "Sentabr",
+    "Oktabr",
+    "Noyabr",
+    "Dekabr"
 
-        "Yanvar",
-
-        "Fevral",
-
-        "Mart",
-
-        "Aprel",
-
-        "May",
-
-        "Iyun",
-
-        "Iyul",
-
-        "Avgust",
-
-        "Sentabr",
-
-        "Oktabr",
-
-        "Noyabr",
-
-        "Dekabr"
-
-    ];
+];
 
 
-    return (
-        names[month] +
-        " " +
-        year
-    );
-
-}
-
-
-/* =========================================
+/* =====================================================
    OYLIK HISOBOT
-========================================= */
+===================================================== */
 
 function renderMonthlyReport() {
 
@@ -2872,171 +2676,167 @@ function renderMonthlyReport() {
     const months = {};
 
 
-    dates.forEach(
-        dateString => {
+    dates.forEach(dateString => {
 
-            if (
-                getLockReason(
-                    dateString
-                )
-            ) {
+        if (
+            getLockReason(dateString)
+        ) {
+
+            return;
+
+        }
+
+
+        const date =
+            new Date(
+                dateString + "T00:00:00"
+            );
+
+
+        const year =
+            date.getFullYear();
+
+        const month =
+            date.getMonth();
+
+
+        const key =
+            `${year}-${String(
+                month + 1
+            ).padStart(2, "0")}`;
+
+
+        if (!months[key]) {
+
+            months[key] = {
+
+                year: year,
+                month: month,
+                plus: 0,
+                minus: 0,
+                total: 0
+
+            };
+
+        }
+
+
+        const lessons =
+            lessonsPerDay[
+                date.getDay()
+            ] || 0;
+
+
+        students.forEach(
+            (_, index) => {
+
+                const value =
+                    getAttendance(
+                        dateString,
+                        index
+                    );
+
+
+                if (value === "+") {
+
+                    months[key].plus +=
+                        lessons;
+
+                }
+
+
+                if (value === "-") {
+
+                    months[key].minus +=
+                        lessons;
+
+                }
+
+
+                if (
+                    value === "+" ||
+                    value === "-"
+                ) {
+
+                    months[key].total +=
+                        lessons;
+
+                }
+
+            }
+        );
+
+    });
+
+
+    Object.keys(months)
+        .sort()
+        .forEach(key => {
+
+            const data =
+                months[key];
+
+
+            if (data.total === 0) {
 
                 return;
 
             }
 
 
-            const date =
-                new Date(
-                    dateString +
-                    "T00:00:00"
-                );
+            const tr =
+                document.createElement("tr");
 
 
-            const year =
-                date.getFullYear();
+            tr.innerHTML = `
 
-            const month =
-                date.getMonth();
+                <td>
+                    ${monthNames[data.month]}
+                    ${data.year}
+                </td>
 
+                <td class="blue">
+                    ${data.plus}
+                </td>
 
-            const key =
-                `${year}-${String(
-                    month + 1
-                ).padStart(2, "0")}`;
+                <td class="red">
+                    ${data.minus}
+                </td>
 
+                <td>
+                    ${data.total}
+                </td>
 
-            if (
-                !months[key]
-            ) {
-
-                months[key] = {
-
-                    year,
-
-                    month,
-
-                    plus: 0,
-
-                    minus: 0,
-
-                    total: 0
-
-                };
-
-            }
+            `;
 
 
-            const day =
-                date.getDay();
+            body.appendChild(tr);
 
-
-            const lessonCount =
-                lessonsPerDay[day] || 0;
-
-
-            students.forEach(
-                (_, index) => {
-
-                    const value =
-                        getAttendance(
-                            dateString,
-                            index
-                        );
-
-
-                    if (value === "+") {
-
-                        months[key].plus +=
-                            lessonCount;
-
-                    }
-
-
-                    if (value === "-") {
-
-                        months[key].minus +=
-                            lessonCount;
-
-                    }
-
-
-                    if (
-                        value === "+" ||
-                        value === "-"
-                    ) {
-
-                        months[key].total +=
-                            lessonCount;
-
-                    }
-
-                }
-            );
-
-        }
-    );
-
-
-    Object.keys(months)
-        .sort()
-        .forEach(
-            key => {
-
-                const data =
-                    months[key];
-
-
-                if (
-                    data.total === 0
-                ) {
-
-                    return;
-
-                }
-
-
-                const tr =
-                    document.createElement(
-                        "tr"
-                    );
-
-
-                tr.innerHTML = `
-
-                    <td>
-                        ${getMonthName(
-                            data.year,
-                            data.month
-                        )}
-                    </td>
-
-                    <td class="blue">
-                        ${data.plus}
-                    </td>
-
-                    <td class="red">
-                        ${data.minus}
-                    </td>
-
-                    <td>
-                        ${data.total}
-                    </td>
-
-                `;
-
-
-                body.appendChild(tr);
-
-            }
-        );
+        });
 
 }
 
 
-/* =========================================
-   BOSHLASH
-========================================= */
+/* =====================================================
+   DARK MODE NI YUKLASH
+===================================================== */
+
+if (
+    localStorage.getItem(
+        "davomat_dark"
+    ) === "true"
+) {
+
+    document.body.classList.add(
+        "dark"
+    );
+
+}
+
+
+/* =====================================================
+   LOGINNI TEKSHIRISH
+===================================================== */
 
 if (
     sessionStorage.getItem(
@@ -3058,6 +2858,115 @@ if (
 }
 
 
+/* =====================================================
+   TUGMALARGA FUNKSIYALARNI ULASH
+   MUHIM!
+===================================================== */
+
+document.getElementById(
+    "loginButton"
+).addEventListener(
+    "click",
+    login
+);
+
+
+document.getElementById(
+    "reportButton"
+).addEventListener(
+    "click",
+    openReport
+);
+
+
+document.getElementById(
+    "darkButton"
+).addEventListener(
+    "click",
+    toggleDark
+);
+
+
+document.getElementById(
+    "logoutButton"
+).addEventListener(
+    "click",
+    logout
+);
+
+
+document.getElementById(
+    "backButton"
+).addEventListener(
+    "click",
+    closeReport
+);
+
+
+document.getElementById(
+    "reportDarkButton"
+).addEventListener(
+    "click",
+    toggleDark
+);
+
+
+document.getElementById(
+    "tabStudents"
+).addEventListener(
+    "click",
+    function() {
+
+        showReportTab("students");
+
+    }
+);
+
+
+document.getElementById(
+    "tabDaily"
+).addEventListener(
+    "click",
+    function() {
+
+        showReportTab("daily");
+
+    }
+);
+
+
+document.getElementById(
+    "tabWeekly"
+).addEventListener(
+    "click",
+    function() {
+
+        showReportTab("weekly");
+
+    }
+);
+
+
+document.getElementById(
+    "tabMonthly"
+).addEventListener(
+    "click",
+    function() {
+
+        showReportTab("monthly");
+
+    }
+);
+
+
+document.getElementById(
+    "studentSearch"
+).addEventListener(
+    "input",
+    renderReport
+);
+
+
 /* ENTER BILAN LOGIN */
 
 document.getElementById(
@@ -3066,9 +2975,7 @@ document.getElementById(
     "keydown",
     function(event) {
 
-        if (
-            event.key === "Enter"
-        ) {
+        if (event.key === "Enter") {
 
             login();
 
@@ -3076,6 +2983,11 @@ document.getElementById(
 
     }
 );
+
+
+/* JADVALNI DASTLAB CHIZISH */
+
+renderTable();
 
 </script>
 
