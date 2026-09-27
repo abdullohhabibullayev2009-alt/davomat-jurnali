@@ -13,8 +13,9 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f4f6f8;
+    background: #f2f4f7;
     color: #222;
+    transition: 0.3s;
 }
 
 body.dark {
@@ -22,7 +23,13 @@ body.dark {
     color: #eee;
 }
 
+button,
+input {
+    font-family: inherit;
+}
+
 /* LOGIN */
+
 #loginPage {
     min-height: 100vh;
     display: flex;
@@ -42,26 +49,24 @@ body.dark {
 
 .dark .login-box {
     background: #1e1e1e;
-    color: white;
 }
 
-.login-box h1 {
+.login-box h2 {
     text-align: center;
-    margin-bottom: 25px;
+    margin-top: 0;
 }
 
 .login-box input[type="text"],
 .login-box input[type="password"] {
     width: 100%;
-    padding: 13px;
-    margin-bottom: 12px;
+    padding: 12px;
+    margin: 8px 0;
     border: 1px solid #ccc;
     border-radius: 8px;
-    font-size: 15px;
+    font-size: 16px;
 }
 
-.dark .login-box input[type="text"],
-.dark .login-box input[type="password"] {
+.dark .login-box input {
     background: #2b2b2b;
     color: white;
     border-color: #555;
@@ -71,32 +76,32 @@ body.dark {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin: 8px 0 15px;
-    font-size: 14px;
+    margin: 10px 0;
 }
 
-.login-box button {
+.login-btn {
     width: 100%;
-    padding: 13px;
-    border: none;
-    border-radius: 8px;
+    padding: 12px;
     background: #1976d2;
     color: white;
-    font-size: 16px;
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
+    font-size: 16px;
 }
 
-.login-box button:hover {
-    background: #1565c0;
+.login-btn:hover {
+    background: #125ca5;
 }
 
 #error {
-    color: #e53935;
+    color: red;
     text-align: center;
-    margin-top: 12px;
+    margin-top: 10px;
 }
 
 /* MAIN */
+
 #mainPage {
     display: none;
 }
@@ -112,153 +117,211 @@ header {
     flex-wrap: wrap;
 }
 
-header h1 {
+header h2 {
     margin: 0;
-    font-size: 22px;
 }
 
 .header-buttons {
     display: flex;
     gap: 8px;
-    flex-wrap: wrap;
 }
 
-header button {
+.header-buttons button {
     border: none;
     padding: 9px 12px;
     border-radius: 7px;
     cursor: pointer;
-    font-size: 14px;
+    background: white;
+    color: #222;
 }
 
 .container {
     padding: 15px;
-    overflow-x: auto;
 }
 
-.top-buttons {
-    display: flex;
-    gap: 8px;
+.info {
+    background: white;
+    padding: 12px;
+    border-radius: 10px;
     margin-bottom: 15px;
-    flex-wrap: wrap;
 }
 
-.top-buttons button {
-    padding: 10px 14px;
-    border: none;
-    border-radius: 7px;
-    cursor: pointer;
-    background: #1976d2;
-    color: white;
+.dark .info {
+    background: #1e1e1e;
 }
 
-.top-buttons button:hover {
-    background: #1565c0;
+.status {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.sync-ok {
+    color: green;
+}
+
+.sync-error {
+    color: red;
+}
+
+/* TABLE */
+
+.table-wrapper {
+    overflow-x: auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
+
+.dark .table-wrapper {
+    background: #1e1e1e;
 }
 
 table {
     border-collapse: collapse;
-    width: max-content;
-    min-width: 100%;
-    background: white;
-}
-
-.dark table {
-    background: #1e1e1e;
+    min-width: max-content;
+    width: 100%;
 }
 
 th,
 td {
     border: 1px solid #ccc;
-    padding: 7px;
     text-align: center;
+    padding: 5px;
 }
 
 .dark th,
 .dark td {
-    border-color: #555;
+    border-color: #444;
 }
 
 th {
     background: #1976d2;
     color: white;
+    position: sticky;
+    top: 0;
+    z-index: 5;
 }
 
 .number {
     width: 55px;
     min-width: 55px;
+    position: sticky;
+    left: 0;
+    z-index: 7;
+    background: #1976d2;
+    color: white;
 }
 
 .name {
-    width: 230px;
-    min-width: 230px;
+    width: 190px;
+    min-width: 190px;
     text-align: left;
-}
-
-.date {
-    width: 100px;
-    min-width: 100px;
-}
-
-.attendance-input {
-    width: 70px;
-    border: none;
-    outline: none;
-    background: transparent;
-    text-align: center;
-    font-size: 17px;
-    font-weight: bold;
-}
-
-.dark .attendance-input {
+    position: sticky;
+    left: 55px;
+    z-index: 6;
+    background: #1976d2;
     color: white;
 }
 
-.present {
-    color: #1976d2;
-}
-
-.absent {
-    color: #e53935;
-}
-
-.dark .present {
-    color: #64b5f6;
-}
-
-.dark .absent {
-    color: #ef5350;
-}
-
-.name-input {
-    width: 100%;
-    border: none;
-    outline: none;
-    background: transparent;
-    font-size: 14px;
+tbody .number {
+    background: white;
     color: inherit;
 }
 
-.delete-date {
-    display: block;
-    margin: 5px auto 0;
-    border: none;
-    background: #e53935;
-    color: white;
-    border-radius: 4px;
-    padding: 3px 6px;
-    cursor: pointer;
-    font-size: 11px;
+tbody .name {
+    background: white;
+    color: inherit;
 }
 
-.dark .delete-date {
-    background: #c62828;
+.dark tbody .number,
+.dark tbody .name {
+    background: #1e1e1e;
+    color: #eee;
 }
+
+.date-header {
+    width: 90px;
+    min-width: 90px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.attendance {
+    width: 90px;
+    min-width: 90px;
+    height: 38px;
+    border: none;
+    background: transparent;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    outline: none;
+}
+
+.attendance:focus {
+    background: rgba(25,118,210,0.08);
+}
+
+/* + va - ranglari */
+
+.attendance.plus {
+    color: #1976d2;
+}
+
+.attendance.minus {
+    color: #e53935;
+}
+
+/* BLOKLANGAN SANA */
+
+.locked {
+    background: #e5e5e5 !important;
+    color: #777 !important;
+}
+
+.dark .locked {
+    background: #292929 !important;
+    color: #777 !important;
+}
+
+.locked-cell {
+    background: #e5e5e5;
+    color: #888;
+    cursor: not-allowed;
+    font-size: 16px;
+}
+
+.dark .locked-cell {
+    background: #292929;
+    color: #777;
+}
+
+.locked-header {
+    background: #666 !important;
+    color: #ddd !important;
+}
+
+.lock-reason {
+    display: block;
+    font-size: 9px;
+    margin-top: 2px;
+}
+
+/* MOBILE */
 
 @media (max-width: 600px) {
 
-    header h1 {
-        font-size: 18px;
+    header {
+        align-items: flex-start;
+    }
+
+    header h2 {
+        font-size: 19px;
+    }
+
+    .header-buttons button {
+        font-size: 12px;
+        padding: 8px;
     }
 
     .container {
@@ -266,17 +329,19 @@ th {
     }
 
     .name {
-        width: 190px;
-        min-width: 190px;
+        width: 165px;
+        min-width: 165px;
+        left: 55px;
     }
 
-    .date {
-        width: 90px;
-        min-width: 90px;
+    .date-header,
+    .attendance {
+        width: 82px;
+        min-width: 82px;
     }
 
-    .attendance-input {
-        width: 60px;
+    .info {
+        font-size: 13px;
     }
 }
 </style>
@@ -285,30 +350,35 @@ th {
 <body>
 
 <!-- LOGIN PAGE -->
+
 <div id="loginPage">
 
     <div class="login-box">
 
-        <h1>📋 Davomat jurnali</h1>
+        <h2>🔐 Davomat jurnali</h2>
 
         <input
             type="text"
             id="username"
             placeholder="Login"
+            autocomplete="username"
         >
 
         <input
             type="password"
             id="password"
             placeholder="Parol"
+            autocomplete="current-password"
         >
 
         <label class="remember">
-            <input type="checkbox" id="rememberMe">
+            <input type="checkbox" id="remember">
             Loginni eslab qolish
         </label>
 
-        <button onclick="login()">Kirish</button>
+        <button class="login-btn" onclick="login()">
+            Kirish
+        </button>
 
         <div id="error"></div>
 
@@ -318,16 +388,17 @@ th {
 
 
 <!-- MAIN PAGE -->
+
 <div id="mainPage">
 
 <header>
 
-    <h1>📋 Davomat jurnali</h1>
+    <h2>📋 Davomat jurnali</h2>
 
     <div class="header-buttons">
 
         <button onclick="toggleDarkMode()">
-            🌙 Dark Mode
+            🌙 Dark
         </button>
 
         <button onclick="logout()">
@@ -341,25 +412,81 @@ th {
 
 <div class="container">
 
-    <div class="top-buttons">
+    <div class="info">
 
-        <button onclick="addDate()">
-            ➕ Sana qo‘shish
-        </button>
+        <b>O‘quv davri:</b>
+        28.09.2026 — 25.05.2027
+
+        <br><br>
+
+        <b>Belgilar:</b>
+        <span style="color:#1976d2;font-weight:bold;">+</span> Keldi
+        &nbsp;&nbsp;
+        <span style="color:#e53935;font-weight:bold;">−</span> Kelmadi
+        &nbsp;&nbsp;
+        🔒 Dam olish
+
+        <div class="status" id="syncStatus">
+            🔄 Firebase bilan ulanmoqda...
+        </div>
 
     </div>
 
-    <div id="tableContainer"></div>
+
+    <div class="table-wrapper">
+
+        <table id="attendanceTable">
+
+            <thead id="tableHead"></thead>
+
+            <tbody id="tableBody"></tbody>
+
+        </table>
+
+    </div>
 
 </div>
 
 </div>
 
 
-<script>
+<!-- FIREBASE -->
+
+<script type="module">
+
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+    getDatabase,
+    ref,
+    onValue,
+    set
+} from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
 
 /* =========================
-   LOGIN MA'LUMOTLARI
+   FIREBASE CONFIG
+========================= */
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAo-tioaUvivf965VRhRjJao-WXyU0AVTY",
+    authDomain: "davomat-jurnali.firebaseapp.com",
+    databaseURL: "https://davomat-jurnali-default-rtdb.firebaseio.com",
+    projectId: "davomat-jurnali",
+    storageBucket: "davomat-jurnali.firebasestorage.app",
+    messagingSenderId: "859496944977",
+    appId: "1:859496944977:web:ce853ba3191f6a086cef70",
+    measurementId: "G-8CMSQF83T6"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+
+/* =========================
+   LOGIN
 ========================= */
 
 const CORRECT_USERNAME = "abdulloh04072009";
@@ -367,133 +494,90 @@ const CORRECT_PASSWORD = "abdulloh2009.";
 
 
 /* =========================
+   O'QUV DAVRI
+========================= */
+
+const START_DATE = "2026-09-28";
+const END_DATE   = "2027-05-25";
+
+
+/* =========================
    O'QUVCHILAR
 ========================= */
 
-const defaultNames = [
-    "Abdumannob Ruqiyaxon",
-    "Abdumutalibov Muhammadali",
-    "Abdug'offorova Muslimaxon",
-    "Anvarova Muxarramxon",
-    "Arabekova Ruqiya",
-    "Baxromova Xabibaxon",
-    "Boxodirjonova Kimyoxon",
-    "Habibullayev Abdulloh",
-    "Ibroximova Mu'minaxon",
-    "Jo'rayev Xikmatillo",
-    "Komilova Oydinoy",
-    "Komilova Rayyona",
-    "Mamasidiqova Shaxzodatxon",
-    "Muqumjonova Muzayyana",
-    "Nishonboyeva Mo'minaxon",
-    "O'ktamov Raxmatillo",
-    "Oribjonova Robiyaxon",
-    "Qosimova Rayyona",
-    "Soyibjonov Abduqodir",
-    "Soyibjonova Moxlaroyim",
-    "Ubaydullayeva Soraxon",
-    "Yaqubov Abdulboriy",
-    "Yuldashboyeva Rayona",
-    "Yuldasheva Muhlisaxon",
+const students = [
+    "Abdullayev Abdulloh",
+    "Abdullayev Azizbek",
+    "Abdug‘afforov Abdulloh",
+    "Abduqodirov Azizbek",
+    "Aliyev Muhammad",
+    "Anvarov Diyorbek",
+    "Asqarov Bekzod",
+    "Boboyev Jahongir",
+    "Ergashev Asadbek",
+    "Fayzullayev Shohrux",
+    "G‘ofurov Muhammad",
+    "Hamroyev Javohir",
+    "Hasanov Bekzod",
+    "Ibrohimov Muhammad",
+    "Ismoilov Azizbek",
+    "Karimov Sardor",
+    "Mahmudov Doston",
+    "Mirzaev Shoxrux",
+    "Nabiyev Abdulaziz",
+    "Olimov Muhammad",
+    "Qodirov Diyorbek",
+    "Rahimov Sardor",
+    "Saidov Behruz",
+    "Tursunov Azizbek",
     "Muhammadkomilov Abduraxmon"
 ];
 
 
 /* =========================
-   MA'LUMOTLARNI YUKLASH
+   ATTENDANCE DATA
 ========================= */
 
-let data;
+let attendanceData = {};
 
-try {
-
-    data = JSON.parse(
-        localStorage.getItem("davomat_jurnali")
-    );
-
-} catch (e) {
-
-    data = null;
-
-}
+const DATABASE_PATH = "davomat_jurnali";
 
 
-if (!data) {
+/* =========================
+   LOCAL DARK MODE
+========================= */
 
-    data = {
-
-        dates: [
-            "02.10.2026",
-            "07.10.2026",
-            "09.10.2026"
-        ],
-
-        names: [...defaultNames],
-
-        attendance: []
-
-    };
-
-}
-
-
-/* Agar names yo'q bo'lsa */
-
-if (!data.names) {
-
-    data.names = [...defaultNames];
-
-}
-
-
-/* Agar attendance yo'q bo'lsa */
-
-if (!data.attendance) {
-
-    data.attendance = [];
-
+if (localStorage.getItem("davomat_dark") === "true") {
+    document.body.classList.add("dark");
 }
 
 
 /* =========================
-   ESKI SANALARNI O'ZGARTIRISH
-   2026-10-02 -> 02.10.2026
+   LOGIN HOLATI
 ========================= */
 
-data.dates = data.dates.map(function(date) {
+function checkLogin() {
 
-    if (/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    const sessionLogin =
+        sessionStorage.getItem("davomat_login");
 
-        const parts = date.split("-");
+    const remembered =
+        localStorage.getItem("davomat_remember");
 
-        return parts[2] + "." + parts[1] + "." + parts[0];
+    if (sessionLogin === "true" || remembered === "true") {
+
+        showMain();
+
+    } else {
+
+        document.getElementById("loginPage").style.display = "flex";
+        document.getElementById("mainPage").style.display = "none";
 
     }
-
-    return date;
-
-});
-
-
-/* =========================
-   SAQLASH
-========================= */
-
-function saveData() {
-
-    localStorage.setItem(
-        "davomat_jurnali",
-        JSON.stringify(data)
-    );
-
 }
 
 
-/* =========================
-   LOGIN
-========================= */
-
-function login() {
+window.login = function() {
 
     const username =
         document.getElementById("username").value.trim();
@@ -502,10 +586,7 @@ function login() {
         document.getElementById("password").value;
 
     const remember =
-        document.getElementById("rememberMe").checked;
-
-    const error =
-        document.getElementById("error");
+        document.getElementById("remember").checked;
 
 
     if (
@@ -513,37 +594,451 @@ function login() {
         password === CORRECT_PASSWORD
     ) {
 
-        error.textContent = "";
-
-
-        sessionStorage.setItem(
-            "davomat_logged_in",
-            "true"
-        );
-
+        sessionStorage.setItem("davomat_login", "true");
 
         if (remember) {
-
-            localStorage.setItem(
-                "davomat_remember",
-                "true"
-            );
-
+            localStorage.setItem("davomat_remember", "true");
         } else {
-
-            localStorage.removeItem(
-                "davomat_remember"
-            );
-
+            localStorage.removeItem("davomat_remember");
         }
 
+        document.getElementById("error").textContent = "";
 
         showMain();
 
     } else {
 
-        error.textContent =
-            "Login yoki parol noto‘g‘ri!";
+        document.getElementById("error").textContent =
+            "Login yoki parol noto‘g‘ri.";
+
+    }
+
+};
+
+
+window.logout = function() {
+
+    sessionStorage.removeItem("davomat_login");
+    localStorage.removeItem("davomat_remember");
+
+    location.reload();
+
+};
+
+
+/* Enter tugmasi */
+
+document.addEventListener("keydown", function(e) {
+
+    if (
+        e.key === "Enter" &&
+        document.getElementById("loginPage").style.display !== "none"
+    ) {
+        login();
+    }
+
+});
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+window.toggleDarkMode = function() {
+
+    document.body.classList.toggle("dark");
+
+    localStorage.setItem(
+        "davomat_dark",
+        document.body.classList.contains("dark")
+    );
+
+};
+
+
+/* =========================
+   SANA FUNKSIYALARI
+========================= */
+
+function parseDate(str) {
+
+    const [y, m, d] = str.split("-").map(Number);
+
+    return new Date(y, m - 1, d);
+
+}
+
+
+function formatDate(date) {
+
+    const d =
+        String(date.getDate()).padStart(2, "0");
+
+    const m =
+        String(date.getMonth() + 1).padStart(2, "0");
+
+    const y =
+        date.getFullYear();
+
+    return `${d}.${m}.${y}`;
+
+}
+
+
+function toISO(date) {
+
+    const y =
+        date.getFullYear();
+
+    const m =
+        String(date.getMonth() + 1).padStart(2, "0");
+
+    const d =
+        String(date.getDate()).padStart(2, "0");
+
+    return `${y}-${m}-${d}`;
+
+}
+
+
+/* =========================
+   BLOKLANGAN SANALAR
+========================= */
+
+function getLockReason(date) {
+
+    const iso = toISO(date);
+
+    const day = date.getDay();
+
+
+    /* Yakshanba */
+
+    if (day === 0) {
+        return "Yakshanba";
+    }
+
+
+    /* Kuzgi ta'til
+       04.11.2026 - 09.11.2026
+    */
+
+    if (
+        iso >= "2026-11-04" &&
+        iso <= "2026-11-09"
+    ) {
+        return "Kuzgi ta'til";
+    }
+
+
+    /* Qishki ta'til
+       28.12.2026 - 10.01.2027
+    */
+
+    if (
+        iso >= "2026-12-28" &&
+        iso <= "2027-01-10"
+    ) {
+        return "Qishki ta'til";
+    }
+
+
+    /* Bahorgi ta'til
+       21.03.2027 - 27.03.2027
+    */
+
+    if (
+        iso >= "2027-03-21" &&
+        iso <= "2027-03-27"
+    ) {
+        return "Bahorgi ta'til";
+    }
+
+
+    /* Rasmiy bayramlar */
+
+    const holidays = {
+
+        "2026-10-01": "O‘qituvchi va murabbiylar kuni",
+        "2026-12-08": "Konstitutsiya kuni",
+
+        "2027-01-01": "Yangi yil",
+
+        "2027-03-08": "Xotin-qizlar kuni",
+        "2027-03-21": "Navro‘z",
+
+        "2027-05-09": "Xotira va qadrlash kuni"
+
+    };
+
+
+    if (holidays[iso]) {
+        return holidays[iso];
+    }
+
+
+    return null;
+
+}
+
+
+/* =========================
+   SANALARNI AVTOMATIK YARATISH
+========================= */
+
+function generateDates() {
+
+    const dates = [];
+
+    let current =
+        parseDate(START_DATE);
+
+    const end =
+        parseDate(END_DATE);
+
+
+    while (current <= end) {
+
+        dates.push({
+            iso: toISO(current),
+            display: formatDate(current),
+            lock: getLockReason(current)
+        });
+
+        current.setDate(
+            current.getDate() + 1
+        );
+
+    }
+
+    return dates;
+
+}
+
+
+const dates = generateDates();
+
+
+/* =========================
+   JADVALNI CHIZISH
+========================= */
+
+function renderTable() {
+
+    const head =
+        document.getElementById("tableHead");
+
+    const body =
+        document.getElementById("tableBody");
+
+
+    head.innerHTML = "";
+    body.innerHTML = "";
+
+
+    /* HEADER */
+
+    const headerRow =
+        document.createElement("tr");
+
+
+    const numberTh =
+        document.createElement("th");
+
+    numberTh.className = "number";
+    numberTh.textContent = "number";
+
+    headerRow.appendChild(numberTh);
+
+
+    const nameTh =
+        document.createElement("th");
+
+    nameTh.className = "name";
+    nameTh.textContent = "Ism va Familya";
+
+    headerRow.appendChild(nameTh);
+
+
+    dates.forEach(date => {
+
+        const th =
+            document.createElement("th");
+
+        th.className = "date-header";
+
+
+        if (date.lock) {
+
+            th.classList.add("locked-header");
+
+            th.innerHTML =
+                `${date.display}
+                 <span class="lock-reason">
+                    🔒 ${date.lock}
+                 </span>`;
+
+        } else {
+
+            th.textContent =
+                date.display;
+
+        }
+
+
+        headerRow.appendChild(th);
+
+    });
+
+
+    head.appendChild(headerRow);
+
+
+    /* O'QUVCHILAR */
+
+    students.forEach((student, studentIndex) => {
+
+        const row =
+            document.createElement("tr");
+
+
+        const number =
+            document.createElement("td");
+
+        number.className = "number";
+
+        number.textContent =
+            studentIndex + 1;
+
+        row.appendChild(number);
+
+
+        const name =
+            document.createElement("td");
+
+        name.className = "name";
+
+        name.textContent =
+            student;
+
+        row.appendChild(name);
+
+
+        dates.forEach(date => {
+
+            const cell =
+                document.createElement("td");
+
+
+            if (date.lock) {
+
+                cell.className = "locked-cell";
+
+                cell.textContent = "🔒";
+
+                cell.title =
+                    date.lock;
+
+            } else {
+
+                const input =
+                    document.createElement("input");
+
+                input.type = "text";
+
+                input.maxLength = 1;
+
+                input.className = "attendance";
+
+
+                const key =
+                    `${studentIndex}_${date.iso}`;
+
+
+                input.value =
+                    attendanceData[key] || "";
+
+
+                updateColor(input);
+
+
+                input.addEventListener(
+                    "input",
+                    async function() {
+
+                        let value =
+                            this.value.trim();
+
+
+                        if (
+                            value !== "+" &&
+                            value !== "-"
+                        ) {
+
+                            this.value = "";
+
+                            delete attendanceData[key];
+
+                            await saveToFirebase();
+
+                            return;
+
+                        }
+
+
+                        this.value = value;
+
+                        attendanceData[key] =
+                            value;
+
+
+                        updateColor(this);
+
+                        await saveToFirebase();
+
+                    }
+                );
+
+
+                cell.appendChild(input);
+
+            }
+
+
+            row.appendChild(cell);
+
+        });
+
+
+        body.appendChild(row);
+
+    });
+
+}
+
+
+/* =========================
+   + / - RANGLARI
+========================= */
+
+function updateColor(input) {
+
+    input.classList.remove(
+        "plus",
+        "minus"
+    );
+
+
+    if (input.value === "+") {
+
+        input.classList.add("plus");
+
+    }
+
+
+    if (input.value === "-") {
+
+        input.classList.add("minus");
 
     }
 
@@ -551,24 +1046,114 @@ function login() {
 
 
 /* =========================
-   ENTER BILAN KIRISH
+   FIREBASEGA SAQLASH
 ========================= */
 
-document
-    .getElementById("password")
-    .addEventListener("keydown", function(event) {
+async function saveToFirebase() {
 
-        if (event.key === "Enter") {
+    try {
 
-            login();
+        await set(
+            ref(db, DATABASE_PATH),
+            {
+                attendance: attendanceData,
+                updatedAt: Date.now()
+            }
+        );
 
-        }
 
-    });
+        setSyncStatus(
+            "☁️ Ma'lumot Firebase'ga saqlandi.",
+            true
+        );
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        setSyncStatus(
+            "❌ Firebase'ga saqlashda xatolik.",
+            false
+        );
+
+    }
+
+}
 
 
 /* =========================
-   ASOSIY SAHIFANI OCHISH
+   FIREBASE'DAN O'QISH
+========================= */
+
+onValue(
+    ref(db, DATABASE_PATH),
+    snapshot => {
+
+        const data =
+            snapshot.val();
+
+
+        if (data && data.attendance) {
+
+            attendanceData =
+                data.attendance;
+
+        } else {
+
+            attendanceData = {};
+
+        }
+
+
+        renderTable();
+
+
+        setSyncStatus(
+            "☁️ Firebase bilan sinxronlangan.",
+            true
+        );
+
+    },
+    error => {
+
+        console.error(error);
+
+        setSyncStatus(
+            "❌ Firebase bilan ulanishda xatolik.",
+            false
+        );
+
+    }
+);
+
+
+/* =========================
+   STATUS
+========================= */
+
+function setSyncStatus(message, success) {
+
+    const element =
+        document.getElementById("syncStatus");
+
+
+    if (!element) return;
+
+
+    element.textContent =
+        message;
+
+
+    element.className =
+        "status " +
+        (success ? "sync-ok" : "sync-error");
+
+}
+
+
+/* =========================
+   MAIN PAGE
 ========================= */
 
 function showMain() {
@@ -579,505 +1164,14 @@ function showMain() {
     document.getElementById("mainPage").style.display =
         "block";
 
-    render();
-
 }
 
 
 /* =========================
-   LOGOUT
+   START
 ========================= */
 
-function logout() {
-
-    sessionStorage.removeItem(
-        "davomat_logged_in"
-    );
-
-    localStorage.removeItem(
-        "davomat_remember"
-    );
-
-
-    document.getElementById("mainPage").style.display =
-        "none";
-
-    document.getElementById("loginPage").style.display =
-        "flex";
-
-
-    document.getElementById("username").value = "";
-
-    document.getElementById("password").value = "";
-
-    document.getElementById("rememberMe").checked = false;
-
-}
-
-
-/* =========================
-   SAHIFA OCHILGANDA
-========================= */
-
-const isLoggedIn =
-    sessionStorage.getItem("davomat_logged_in");
-
-const remembered =
-    localStorage.getItem("davomat_remember");
-
-
-if (
-    isLoggedIn === "true" ||
-    remembered === "true"
-) {
-
-    sessionStorage.setItem(
-        "davomat_logged_in",
-        "true"
-    );
-
-    showMain();
-
-} else {
-
-    document.getElementById("loginPage").style.display =
-        "flex";
-
-    document.getElementById("mainPage").style.display =
-        "none";
-
-}
-
-
-/* =========================
-   JADVAL
-========================= */
-
-function render() {
-
-    const container =
-        document.getElementById("tableContainer");
-
-
-    let html = `
-
-        <table>
-
-            <thead>
-
-                <tr>
-
-                    <th class="number">
-                        number
-                    </th>
-
-                    <th class="name">
-                        Ism va Familya
-                    </th>
-
-    `;
-
-
-    /* SANALAR */
-
-    data.dates.forEach(function(date, dateIndex) {
-
-        html += `
-
-            <th class="date">
-
-                ${date}
-
-                <button
-                    class="delete-date"
-                    onclick="deleteDate(${dateIndex})"
-                >
-                    ×
-                </button>
-
-            </th>
-
-        `;
-
-    });
-
-
-    html += `
-
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-    `;
-
-
-    /* O'QUVCHILAR */
-
-    data.names.forEach(function(name, studentIndex) {
-
-        html += `
-
-            <tr>
-
-                <td>
-                    ${studentIndex + 1}
-                </td>
-
-                <td class="name">
-
-                    <input
-                        class="name-input"
-                        value="${escapeHtml(name)}"
-                        onchange="changeName(
-                            ${studentIndex},
-                            this.value
-                        )"
-                    >
-
-                </td>
-
-        `;
-
-
-        /* DAVOMAT */
-
-        data.dates.forEach(function(date, dateIndex) {
-
-            const value =
-                data.attendance[studentIndex]?.[dateIndex] || "";
-
-
-            let className = "";
-
-
-            if (value === "+") {
-
-                className = "present";
-
-            }
-
-
-            if (value === "-") {
-
-                className = "absent";
-
-            }
-
-
-            html += `
-
-                <td class="date">
-
-                    <input
-                        class="attendance-input ${className}"
-                        maxlength="1"
-                        value="${value}"
-                        oninput="changeAttendance(
-                            ${studentIndex},
-                            ${dateIndex},
-                            this
-                        )"
-                    >
-
-                </td>
-
-            `;
-
-        });
-
-
-        html += `
-
-            </tr>
-
-        `;
-
-    });
-
-
-    html += `
-
-            </tbody>
-
-        </table>
-
-    `;
-
-
-    container.innerHTML = html;
-
-}
-
-
-/* =========================
-   HTML XAVFSIZLIGI
-========================= */
-
-function escapeHtml(text) {
-
-    return text
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-
-}
-
-
-/* =========================
-   ISMNI O'ZGARTIRISH
-========================= */
-
-function changeName(index, value) {
-
-    data.names[index] = value;
-
-    saveData();
-
-}
-
-
-/* =========================
-   DAVOMATNI O'ZGARTIRISH
-========================= */
-
-function changeAttendance(
-    studentIndex,
-    dateIndex,
-    input
-) {
-
-    let value = input.value;
-
-
-    /* Faqat + yoki - */
-
-    if (
-        value !== "+" &&
-        value !== "-"
-    ) {
-
-        value = "";
-
-        input.value = "";
-
-    }
-
-
-    if (!data.attendance[studentIndex]) {
-
-        data.attendance[studentIndex] = [];
-
-    }
-
-
-    data.attendance[studentIndex][dateIndex] =
-        value;
-
-
-    /* Rangni o'zgartirish */
-
-    input.classList.remove(
-        "present",
-        "absent"
-    );
-
-
-    if (value === "+") {
-
-        input.classList.add("present");
-
-    }
-
-
-    if (value === "-") {
-
-        input.classList.add("absent");
-
-    }
-
-
-    saveData();
-
-}
-
-
-/* =========================
-   SANA QO'SHISH
-========================= */
-
-function addDate() {
-
-    const date = prompt(
-        "Sanani kiriting:\n\nMasalan: 17.10.2026"
-    );
-
-
-    if (!date) {
-
-        return;
-
-    }
-
-
-    /* Sana formatini tekshirish */
-
-    const pattern =
-        /^\d{2}\.\d{2}\.\d{4}$/;
-
-
-    if (!pattern.test(date)) {
-
-        alert(
-            "Sana noto‘g‘ri formatda!\n\n" +
-            "Masalan: 17.10.2026"
-        );
-
-        return;
-
-    }
-
-
-    /* Sanani tekshirish */
-
-    const parts = date.split(".");
-
-    const day = Number(parts[0]);
-    const month = Number(parts[1]);
-    const year = Number(parts[2]);
-
-
-    const testDate =
-        new Date(year, month - 1, day);
-
-
-    if (
-        testDate.getFullYear() !== year ||
-        testDate.getMonth() !== month - 1 ||
-        testDate.getDate() !== day
-    ) {
-
-        alert("Bunday sana mavjud emas!");
-
-        return;
-
-    }
-
-
-    /* Takroriy sana */
-
-    if (data.dates.includes(date)) {
-
-        alert(
-            "Bu sana allaqachon mavjud!"
-        );
-
-        return;
-
-    }
-
-
-    /* Yangi sana */
-
-    data.dates.push(date);
-
-
-    saveData();
-
-    render();
-
-}
-
-
-/* =========================
-   SANANI O'CHIRISH
-========================= */
-
-function deleteDate(index) {
-
-    const date =
-        data.dates[index];
-
-
-    const confirmDelete =
-        confirm(
-            date +
-            " sanasini o‘chirmoqchimisiz?"
-        );
-
-
-    if (!confirmDelete) {
-
-        return;
-
-    }
-
-
-    data.dates.splice(index, 1);
-
-
-    data.attendance.forEach(function(row) {
-
-        if (row) {
-
-            row.splice(index, 1);
-
-        }
-
-    });
-
-
-    saveData();
-
-    render();
-
-}
-
-
-/* =========================
-   DARK MODE
-========================= */
-
-function toggleDarkMode() {
-
-    document.body.classList.toggle("dark");
-
-
-    if (
-        document.body.classList.contains("dark")
-    ) {
-
-        localStorage.setItem(
-            "davomat_dark",
-            "true"
-        );
-
-    } else {
-
-        localStorage.setItem(
-            "davomat_dark",
-            "false"
-        );
-
-    }
-
-}
-
-
-/* =========================
-   DARK MODENI YUKLASH
-========================= */
-
-if (
-    localStorage.getItem("davomat_dark") === "true"
-) {
-
-    document.body.classList.add("dark");
-
-}
+checkLogin();
 
 </script>
 
