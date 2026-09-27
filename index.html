@@ -13,20 +13,22 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #ffffff;
-    color: #333333;
-    transition: 0.2s;
+    background: #f4f6f8;
+    color: #222;
 }
 
-/* ================= LOGIN ================= */
+body.dark {
+    background: #121212;
+    color: #eee;
+}
 
+/* LOGIN */
 #loginPage {
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background: #f2f5f9;
 }
 
 .login-box {
@@ -34,123 +36,152 @@ body {
     max-width: 380px;
     background: white;
     padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.12);
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+}
+
+.dark .login-box {
+    background: #1e1e1e;
+    color: white;
+}
+
+.login-box h1 {
     text-align: center;
+    margin-bottom: 25px;
 }
 
-.login-box h2 {
-    margin: 0 0 25px 0;
-    color: #1976d2;
-}
-
-.login-box input {
+.login-box input[type="text"],
+.login-box input[type="password"] {
     width: 100%;
     padding: 13px;
     margin-bottom: 12px;
-    border: 1px solid #cccccc;
-    border-radius: 6px;
-    font-size: 16px;
-    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
 }
 
-.login-box input:focus {
-    border-color: #1976d2;
+.dark .login-box input[type="text"],
+.dark .login-box input[type="password"] {
+    background: #2b2b2b;
+    color: white;
+    border-color: #555;
 }
 
-.login-button {
+.remember {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 8px 0 15px;
+    font-size: 14px;
+}
+
+.login-box button {
     width: 100%;
     padding: 13px;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     background: #1976d2;
     color: white;
     font-size: 16px;
     cursor: pointer;
 }
 
-.login-button:hover {
+.login-box button:hover {
     background: #1565c0;
 }
 
-#errorMessage {
-    display: none;
+#error {
     color: #e53935;
+    text-align: center;
     margin-top: 12px;
-    font-size: 14px;
 }
 
-/* ================= JOURNAL ================= */
-
-#journalPage {
+/* MAIN */
+#mainPage {
     display: none;
 }
 
-.top {
+header {
+    padding: 15px;
     background: #1976d2;
     color: white;
-    padding: 14px;
-    font-size: 21px;
-    font-weight: bold;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
-.logout-button {
-    background: #d32f2f;
-    color: white;
+header h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+header button {
     border: none;
-    border-radius: 5px;
-    padding: 8px 12px;
-    font-size: 14px;
+    padding: 9px 12px;
+    border-radius: 7px;
     cursor: pointer;
+    font-size: 14px;
 }
 
-.controls {
-    padding: 10px;
-    background: #f5f5f5;
-    border-bottom: 1px solid #dddddd;
+.container {
+    padding: 15px;
+    overflow-x: auto;
 }
 
-button {
-    padding: 9px 15px;
+.top-buttons {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.top-buttons button {
+    padding: 10px 14px;
     border: none;
-    border-radius: 5px;
+    border-radius: 7px;
+    cursor: pointer;
     background: #1976d2;
     color: white;
-    font-size: 15px;
-    cursor: pointer;
-    margin-right: 5px;
 }
 
-.dark-button {
-    background: #333333;
-}
-
-.journal {
-    width: 100%;
-    overflow-x: auto;
+.top-buttons button:hover {
+    background: #1565c0;
 }
 
 table {
     border-collapse: collapse;
     width: max-content;
     min-width: 100%;
+    background: white;
+}
+
+.dark table {
+    background: #1e1e1e;
 }
 
 th,
 td {
-    border: 1px solid #c8c8c8;
-    height: 48px;
+    border: 1px solid #ccc;
+    padding: 7px;
     text-align: center;
-    padding: 5px;
+}
+
+.dark th,
+.dark td {
+    border-color: #555;
 }
 
 th {
-    background: #eef2f6;
-    font-weight: normal;
+    background: #1976d2;
+    color: white;
 }
 
 .number {
@@ -158,11 +189,45 @@ th {
     min-width: 55px;
 }
 
-.fullname {
-    width: 250px;
-    min-width: 250px;
+.name {
+    width: 230px;
+    min-width: 230px;
     text-align: left;
-    padding-left: 12px;
+}
+
+.date {
+    width: 100px;
+    min-width: 100px;
+}
+
+.attendance-input {
+    width: 70px;
+    border: none;
+    outline: none;
+    background: transparent;
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.dark .attendance-input {
+    color: white;
+}
+
+.present {
+    color: #1976d2;
+}
+
+.absent {
+    color: #e53935;
+}
+
+.dark .present {
+    color: #64b5f6;
+}
+
+.dark .absent {
+    color: #ef5350;
 }
 
 .name-input {
@@ -170,162 +235,48 @@ th {
     border: none;
     outline: none;
     background: transparent;
-    font-size: 16px;
-    color: #333333;
+    font-size: 14px;
+    color: inherit;
 }
 
-.date-cell {
-    width: 90px;
-    min-width: 90px;
-}
-
-.date-input {
-    width: 100%;
+.delete-date {
+    display: block;
+    margin: 5px auto 0;
     border: none;
-    outline: none;
-    background: transparent;
-    text-align: center;
-    font-size: 13px;
-    color: #1976d2;
-}
-
-.attendance {
-    width: 100px;
-    min-width: 100px;
-}
-
-.attendance-input {
-    width: 100%;
-    height: 38px;
-    border: none;
-    outline: none;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    background: transparent;
-    color: #333333;
-}
-
-.attendance-input:focus {
-    background: #f0f7ff;
-}
-
-/* + = KO'K */
-
-.attendance-input.present {
-    color: #1976d2;
-    font-weight: bold;
-}
-
-/* - = QIZIL */
-
-.attendance-input.absent {
-    color: #e53935;
-    font-weight: bold;
-}
-
-/* ================= DARK MODE ================= */
-
-body.dark {
-    background: #121212;
-    color: #eeeeee;
-}
-
-body.dark #loginPage {
-    background: #121212;
-}
-
-body.dark .login-box {
-    background: #1e1e1e;
-    color: #eeeeee;
-}
-
-body.dark .login-box h2 {
-    color: #64b5f6;
-}
-
-body.dark .login-box input {
-    background: #292929;
+    background: #e53935;
     color: white;
-    border-color: #555555;
+    border-radius: 4px;
+    padding: 3px 6px;
+    cursor: pointer;
+    font-size: 11px;
 }
 
-body.dark .controls {
-    background: #1e1e1e;
-    border-bottom-color: #444444;
+.dark .delete-date {
+    background: #c62828;
 }
-
-body.dark table {
-    background: #181818;
-}
-
-body.dark th {
-    background: #292929;
-    color: #eeeeee;
-}
-
-body.dark td {
-    border-color: #444444;
-}
-
-body.dark .name-input {
-    color: #eeeeee;
-}
-
-body.dark .date-input {
-    color: #64b5f6;
-}
-
-body.dark .attendance-input {
-    color: #eeeeee;
-}
-
-body.dark .attendance-input:focus {
-    background: #292929;
-}
-
-body.dark .dark-button {
-    background: #eeeeee;
-    color: #222222;
-}
-
-body.dark .attendance-input.present {
-    color: #64b5f6;
-}
-
-body.dark .attendance-input.absent {
-    color: #ef5350;
-}
-
-/* ================= TELEFON ================= */
 
 @media (max-width: 600px) {
 
-    .top {
-        font-size: 19px;
-        padding: 12px;
+    header h1 {
+        font-size: 18px;
     }
 
-    .logout-button {
-        font-size: 13px;
-        padding: 7px 10px;
+    .container {
+        padding: 8px;
     }
 
-    .fullname {
-        min-width: 220px;
+    .name {
+        width: 190px;
+        min-width: 190px;
     }
 
-    .date-cell {
-        width: 80px;
-        min-width: 80px;
-    }
-
-    .attendance {
+    .date {
+        width: 90px;
         min-width: 90px;
     }
 
-    .login-box {
-        padding: 25px 20px;
+    .attendance-input {
+        width: 60px;
     }
 }
 </style>
@@ -333,218 +284,94 @@ body.dark .attendance-input.absent {
 
 <body>
 
-<!-- ================= LOGIN PAGE ================= -->
-
+<!-- LOGIN PAGE -->
 <div id="loginPage">
 
     <div class="login-box">
 
-        <h2>🔐 Davomat jurnali</h2>
+        <h1>📋 Davomat jurnali</h1>
 
         <input
             type="text"
             id="username"
             placeholder="Login"
-            autocomplete="username"
         >
 
         <input
             type="password"
             id="password"
             placeholder="Parol"
-            autocomplete="current-password"
         >
 
-        <button
-            class="login-button"
-            onclick="login()"
-        >
-            Kirish
-        </button>
+        <label class="remember">
+            <input type="checkbox" id="rememberMe">
+            Loginni eslab qolish
+        </label>
 
-        <div id="errorMessage">
-            Login yoki parol noto‘g‘ri!
-        </div>
+        <button onclick="login()">Kirish</button>
+
+        <div id="error"></div>
 
     </div>
 
 </div>
 
 
-<!-- ================= JOURNAL PAGE ================= -->
+<!-- MAIN PAGE -->
+<div id="mainPage">
 
-<div id="journalPage">
+<header>
 
-    <div class="top">
+    <h1>📋 Davomat jurnali</h1>
 
-        <span>Davomat jurnali</span>
+    <div class="header-buttons">
 
-        <button
-            class="logout-button"
-            onclick="logout()"
-        >
-            Chiqish
+        <button onclick="toggleDarkMode()">
+            🌙 Dark Mode
+        </button>
+
+        <button onclick="logout()">
+            🚪 Chiqish
         </button>
 
     </div>
 
+</header>
 
-    <div class="controls">
+
+<div class="container">
+
+    <div class="top-buttons">
 
         <button onclick="addDate()">
-            + Sana qo'shish
-        </button>
-
-        <button
-            class="dark-button"
-            onclick="toggleDark()"
-        >
-            Dark Mode
+            ➕ Sana qo‘shish
         </button>
 
     </div>
 
+    <div id="tableContainer"></div>
 
-    <div class="journal">
-
-        <table>
-
-            <thead>
-
-                <tr id="headerRow">
-
-                    <th class="number">
-                        Number
-                    </th>
-
-                    <th class="fullname">
-                        Ism va Familya
-                    </th>
-
-                </tr>
-
-            </thead>
-
-            <tbody id="students"></tbody>
-
-        </table>
-
-    </div>
+</div>
 
 </div>
 
 
 <script>
 
-/* =====================================================
-   LOGIN VA PAROL
-   ===================================================== */
+/* =========================
+   LOGIN MA'LUMOTLARI
+========================= */
 
 const CORRECT_USERNAME = "abdulloh04072009";
 const CORRECT_PASSWORD = "abdulloh2009.";
 
 
-/* =====================================================
-   LOGIN
-   ===================================================== */
-
-function login() {
-
-    const username =
-        document.getElementById("username").value.trim();
-
-    const password =
-        document.getElementById("password").value;
-
-    const errorMessage =
-        document.getElementById("errorMessage");
-
-
-    if (
-        username === CORRECT_USERNAME &&
-        password === CORRECT_PASSWORD
-    ) {
-
-        sessionStorage.setItem(
-            "davomat_logged_in",
-            "true"
-        );
-
-        errorMessage.style.display = "none";
-
-        showJournal();
-
-    } else {
-
-        errorMessage.style.display = "block";
-
-    }
-}
-
-
-/* =====================================================
-   ENTER BOSILGANDA LOGIN
-   ===================================================== */
-
-document
-    .getElementById("password")
-    .addEventListener("keydown", function(event) {
-
-        if (event.key === "Enter") {
-            login();
-        }
-
-    });
-
-
-/* =====================================================
-   JURNALNI OCHISH
-   ===================================================== */
-
-function showJournal() {
-
-    document.getElementById("loginPage").style.display =
-        "none";
-
-    document.getElementById("journalPage").style.display =
-        "block";
-
-    render();
-}
-
-
-/* =====================================================
-   CHIQISH
-   ===================================================== */
-
-function logout() {
-
-    sessionStorage.removeItem(
-        "davomat_logged_in"
-    );
-
-    document.getElementById("journalPage").style.display =
-        "none";
-
-    document.getElementById("loginPage").style.display =
-        "flex";
-
-    document.getElementById("username").value = "";
-
-    document.getElementById("password").value = "";
-
-    document.getElementById("errorMessage").style.display =
-        "none";
-}
-
-
-/* =====================================================
+/* =========================
    O'QUVCHILAR
-   ===================================================== */
+========================= */
 
 const defaultNames = [
-
-    "Abdumannobova Ruqiyaxon",
+    "Abdumannob Ruqiyaxon",
     "Abdumutalibov Muhammadali",
     "Abdug'offorova Muslimaxon",
     "Anvarova Muxarramxon",
@@ -552,11 +379,11 @@ const defaultNames = [
     "Baxromova Xabibaxon",
     "Boxodirjonova Kimyoxon",
     "Habibullayev Abdulloh",
-    "Ibroximova Mo'minaxon",
+    "Ibroximova Mu'minaxon",
     "Jo'rayev Xikmatillo",
     "Komilova Oydinoy",
     "Komilova Rayyona",
-    "Mamasidiqova Shaxodatxon",
+    "Mamasidiqova Shaxzodatxon",
     "Muqumjonova Muzayyana",
     "Nishonboyeva Mo'minaxon",
     "O'ktamov Raxmatillo",
@@ -566,18 +393,17 @@ const defaultNames = [
     "Soyibjonova Moxlaroyim",
     "Ubaydullayeva Soraxon",
     "Yaqubov Abdulboriy",
-    "Yuldashboyeva Rayyona",
+    "Yuldashboyeva Rayona",
     "Yuldasheva Muhlisaxon",
     "Muhammadkomilov Abduraxmon"
-
 ];
 
 
-/* =====================================================
+/* =========================
    MA'LUMOTLARNI YUKLASH
-   ===================================================== */
+========================= */
 
-let data = null;
+let data;
 
 try {
 
@@ -585,28 +411,24 @@ try {
         localStorage.getItem("davomat_jurnali")
     );
 
-} catch (error) {
+} catch (e) {
 
     data = null;
 
 }
 
 
-/* =====================================================
-   AGAR MA'LUMOT BO'LMASA
-   ===================================================== */
-
 if (!data) {
 
     data = {
 
-        names: [...defaultNames],
-
         dates: [
-            "2026-10-02",
-            "2026-10-07",
-            "2026-10-09"
+            "02.10.2026",
+            "07.10.2026",
+            "09.10.2026"
         ],
+
+        names: [...defaultNames],
 
         attendance: []
 
@@ -615,26 +437,47 @@ if (!data) {
 }
 
 
-/* =====================================================
-   25-O'QUVCHINI TEKSHIRISH
-   ===================================================== */
+/* Agar names yo'q bo'lsa */
 
-if (
-    !data.names.includes(
-        "Muhammadkomilov Abduraxmon"
-    )
-) {
+if (!data.names) {
 
-    data.names.push(
-        "Muhammadkomilov Abduraxmon"
-    );
+    data.names = [...defaultNames];
 
 }
 
 
-/* =====================================================
-   MA'LUMOTLARNI SAQLASH
-   ===================================================== */
+/* Agar attendance yo'q bo'lsa */
+
+if (!data.attendance) {
+
+    data.attendance = [];
+
+}
+
+
+/* =========================
+   ESKI SANALARNI O'ZGARTIRISH
+   2026-10-02 -> 02.10.2026
+========================= */
+
+data.dates = data.dates.map(function(date) {
+
+    if (/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+
+        const parts = date.split("-");
+
+        return parts[2] + "." + parts[1] + "." + parts[0];
+
+    }
+
+    return date;
+
+});
+
+
+/* =========================
+   SAQLASH
+========================= */
 
 function saveData() {
 
@@ -646,304 +489,501 @@ function saveData() {
 }
 
 
-/* =====================================================
-   JURNALNI CHIZISH
-   ===================================================== */
+/* =========================
+   LOGIN
+========================= */
 
-function render() {
+function login() {
 
-    const header =
-        document.getElementById("headerRow");
+    const username =
+        document.getElementById("username").value.trim();
 
-    const students =
-        document.getElementById("students");
+    const password =
+        document.getElementById("password").value;
 
+    const remember =
+        document.getElementById("rememberMe").checked;
 
-    /* HEADER */
-
-    header.innerHTML = "";
-
-    const numberHeader =
-        document.createElement("th");
-
-    numberHeader.className = "number";
-    numberHeader.textContent = "number";
-
-    header.appendChild(numberHeader);
+    const error =
+        document.getElementById("error");
 
 
-    const nameHeader =
-        document.createElement("th");
+    if (
+        username === CORRECT_USERNAME &&
+        password === CORRECT_PASSWORD
+    ) {
 
-    nameHeader.className = "fullname";
-    nameHeader.textContent = "Ism va Familya";
-
-    header.appendChild(nameHeader);
-
-
-    /* SANALAR */
-
-    data.dates.forEach(
-        function(date, dateIndex) {
-
-            const th =
-                document.createElement("th");
-
-            th.className =
-                "date-cell";
+        error.textContent = "";
 
 
-            const input =
-                document.createElement("input");
-
-            input.type = "date";
-
-            input.className =
-                "date-input";
-
-            input.value =
-                date;
+        sessionStorage.setItem(
+            "davomat_logged_in",
+            "true"
+        );
 
 
-            input.addEventListener(
-                "change",
-                function() {
+        if (remember) {
 
-                    data.dates[dateIndex] =
-                        input.value;
-
-                    saveData();
-
-                }
+            localStorage.setItem(
+                "davomat_remember",
+                "true"
             );
 
+        } else {
 
-            th.appendChild(input);
-
-            header.appendChild(th);
+            localStorage.removeItem(
+                "davomat_remember"
+            );
 
         }
-    );
 
 
-    /* O'QUVCHILAR */
+        showMain();
 
-    students.innerHTML = "";
+    } else {
 
+        error.textContent =
+            "Login yoki parol noto‘g‘ri!";
 
-    data.names.forEach(
-        function(name, studentIndex) {
-
-            const row =
-                document.createElement("tr");
-
-
-            /* NUMBER */
-
-            const number =
-                document.createElement("td");
-
-            number.className =
-                "number";
-
-            number.textContent =
-                studentIndex + 1;
-
-            row.appendChild(number);
-
-
-            /* ISM */
-
-            const nameCell =
-                document.createElement("td");
-
-            nameCell.className =
-                "fullname";
-
-
-            const nameInput =
-                document.createElement("input");
-
-            nameInput.className =
-                "name-input";
-
-            nameInput.value =
-                name;
-
-
-            nameInput.addEventListener(
-                "input",
-                function() {
-
-                    data.names[studentIndex] =
-                        nameInput.value;
-
-                    saveData();
-
-                }
-            );
-
-
-            nameCell.appendChild(
-                nameInput
-            );
-
-            row.appendChild(
-                nameCell
-            );
-
-
-            /* DAVOMAT */
-
-            data.dates.forEach(
-                function(date, dateIndex) {
-
-                    const cell =
-                        document.createElement("td");
-
-                    cell.className =
-                        "attendance";
-
-
-                    const input =
-                        document.createElement("input");
-
-                    input.type = "text";
-
-                    input.className =
-                        "attendance-input";
-
-
-                    /* ESKI MA'LUMOT */
-
-                    if (
-                        data.attendance[studentIndex] &&
-                        data.attendance[studentIndex][dateIndex]
-                    ) {
-
-                        input.value =
-                            data.attendance[
-                                studentIndex
-                            ][dateIndex];
-
-
-                        if (
-                            input.value === "+"
-                        ) {
-
-                            input.classList.add(
-                                "present"
-                            );
-
-                        }
-
-
-                        if (
-                            input.value === "-"
-                        ) {
-
-                            input.classList.add(
-                                "absent"
-                            );
-
-                        }
-
-                    }
-
-
-                    /* O'ZGARISH */
-
-                    input.addEventListener(
-                        "input",
-                        function() {
-
-                            if (
-                                !data.attendance[
-                                    studentIndex
-                                ]
-                            ) {
-
-                                data.attendance[
-                                    studentIndex
-                                ] = [];
-
-                            }
-
-
-                            data.attendance[
-                                studentIndex
-                            ][dateIndex] =
-                                input.value;
-
-
-                            input.classList.remove(
-                                "present",
-                                "absent"
-                            );
-
-
-                            if (
-                                input.value === "+"
-                            ) {
-
-                                input.classList.add(
-                                    "present"
-                                );
-
-                            }
-
-
-                            if (
-                                input.value === "-"
-                            ) {
-
-                                input.classList.add(
-                                    "absent"
-                                );
-
-                            }
-
-
-                            saveData();
-
-                        }
-                    );
-
-
-                    cell.appendChild(input);
-
-                    row.appendChild(cell);
-
-                }
-            );
-
-
-            students.appendChild(row);
-
-        }
-    );
+    }
 
 }
 
 
-/* =====================================================
-   SANA QO'SHISH
-   ===================================================== */
+/* =========================
+   ENTER BILAN KIRISH
+========================= */
 
-function addDate() {
+document
+    .getElementById("password")
+    .addEventListener("keydown", function(event) {
 
-    const date =
-        prompt(
-            "Yangi sanani kiriting.\nMasalan: 2026-10-14"
-        );
+        if (event.key === "Enter") {
+
+            login();
+
+        }
+
+    });
 
 
-    if (!date) {
-        return;
+/* =========================
+   ASOSIY SAHIFANI OCHISH
+========================= */
+
+function showMain() {
+
+    document.getElementById("loginPage").style.display =
+        "none";
+
+    document.getElementById("mainPage").style.display =
+        "block";
+
+    render();
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logout() {
+
+    sessionStorage.removeItem(
+        "davomat_logged_in"
+    );
+
+    localStorage.removeItem(
+        "davomat_remember"
+    );
+
+
+    document.getElementById("mainPage").style.display =
+        "none";
+
+    document.getElementById("loginPage").style.display =
+        "flex";
+
+
+    document.getElementById("username").value = "";
+
+    document.getElementById("password").value = "";
+
+    document.getElementById("rememberMe").checked = false;
+
+}
+
+
+/* =========================
+   SAHIFA OCHILGANDA
+========================= */
+
+const isLoggedIn =
+    sessionStorage.getItem("davomat_logged_in");
+
+const remembered =
+    localStorage.getItem("davomat_remember");
+
+
+if (
+    isLoggedIn === "true" ||
+    remembered === "true"
+) {
+
+    sessionStorage.setItem(
+        "davomat_logged_in",
+        "true"
+    );
+
+    showMain();
+
+} else {
+
+    document.getElementById("loginPage").style.display =
+        "flex";
+
+    document.getElementById("mainPage").style.display =
+        "none";
+
+}
+
+
+/* =========================
+   JADVAL
+========================= */
+
+function render() {
+
+    const container =
+        document.getElementById("tableContainer");
+
+
+    let html = `
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th class="number">
+                        number
+                    </th>
+
+                    <th class="name">
+                        Ism va Familya
+                    </th>
+
+    `;
+
+
+    /* SANALAR */
+
+    data.dates.forEach(function(date, dateIndex) {
+
+        html += `
+
+            <th class="date">
+
+                ${date}
+
+                <button
+                    class="delete-date"
+                    onclick="deleteDate(${dateIndex})"
+                >
+                    ×
+                </button>
+
+            </th>
+
+        `;
+
+    });
+
+
+    html += `
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+    `;
+
+
+    /* O'QUVCHILAR */
+
+    data.names.forEach(function(name, studentIndex) {
+
+        html += `
+
+            <tr>
+
+                <td>
+                    ${studentIndex + 1}
+                </td>
+
+                <td class="name">
+
+                    <input
+                        class="name-input"
+                        value="${escapeHtml(name)}"
+                        onchange="changeName(
+                            ${studentIndex},
+                            this.value
+                        )"
+                    >
+
+                </td>
+
+        `;
+
+
+        /* DAVOMAT */
+
+        data.dates.forEach(function(date, dateIndex) {
+
+            const value =
+                data.attendance[studentIndex]?.[dateIndex] || "";
+
+
+            let className = "";
+
+
+            if (value === "+") {
+
+                className = "present";
+
+            }
+
+
+            if (value === "-") {
+
+                className = "absent";
+
+            }
+
+
+            html += `
+
+                <td class="date">
+
+                    <input
+                        class="attendance-input ${className}"
+                        maxlength="1"
+                        value="${value}"
+                        oninput="changeAttendance(
+                            ${studentIndex},
+                            ${dateIndex},
+                            this
+                        )"
+                    >
+
+                </td>
+
+            `;
+
+        });
+
+
+        html += `
+
+            </tr>
+
+        `;
+
+    });
+
+
+    html += `
+
+            </tbody>
+
+        </table>
+
+    `;
+
+
+    container.innerHTML = html;
+
+}
+
+
+/* =========================
+   HTML XAVFSIZLIGI
+========================= */
+
+function escapeHtml(text) {
+
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================
+   ISMNI O'ZGARTIRISH
+========================= */
+
+function changeName(index, value) {
+
+    data.names[index] = value;
+
+    saveData();
+
+}
+
+
+/* =========================
+   DAVOMATNI O'ZGARTIRISH
+========================= */
+
+function changeAttendance(
+    studentIndex,
+    dateIndex,
+    input
+) {
+
+    let value = input.value;
+
+
+    /* Faqat + yoki - */
+
+    if (
+        value !== "+" &&
+        value !== "-"
+    ) {
+
+        value = "";
+
+        input.value = "";
+
     }
 
 
+    if (!data.attendance[studentIndex]) {
+
+        data.attendance[studentIndex] = [];
+
+    }
+
+
+    data.attendance[studentIndex][dateIndex] =
+        value;
+
+
+    /* Rangni o'zgartirish */
+
+    input.classList.remove(
+        "present",
+        "absent"
+    );
+
+
+    if (value === "+") {
+
+        input.classList.add("present");
+
+    }
+
+
+    if (value === "-") {
+
+        input.classList.add("absent");
+
+    }
+
+
+    saveData();
+
+}
+
+
+/* =========================
+   SANA QO'SHISH
+========================= */
+
+function addDate() {
+
+    const date = prompt(
+        "Sanani kiriting:\n\nMasalan: 17.10.2026"
+    );
+
+
+    if (!date) {
+
+        return;
+
+    }
+
+
+    /* Sana formatini tekshirish */
+
+    const pattern =
+        /^\d{2}\.\d{2}\.\d{4}$/;
+
+
+    if (!pattern.test(date)) {
+
+        alert(
+            "Sana noto‘g‘ri formatda!\n\n" +
+            "Masalan: 17.10.2026"
+        );
+
+        return;
+
+    }
+
+
+    /* Sanani tekshirish */
+
+    const parts = date.split(".");
+
+    const day = Number(parts[0]);
+    const month = Number(parts[1]);
+    const year = Number(parts[2]);
+
+
+    const testDate =
+        new Date(year, month - 1, day);
+
+
+    if (
+        testDate.getFullYear() !== year ||
+        testDate.getMonth() !== month - 1 ||
+        testDate.getDate() !== day
+    ) {
+
+        alert("Bunday sana mavjud emas!");
+
+        return;
+
+    }
+
+
+    /* Takroriy sana */
+
+    if (data.dates.includes(date)) {
+
+        alert(
+            "Bu sana allaqachon mavjud!"
+        );
+
+        return;
+
+    }
+
+
+    /* Yangi sana */
+
     data.dates.push(date);
+
 
     saveData();
 
@@ -952,11 +992,56 @@ function addDate() {
 }
 
 
-/* =====================================================
-   DARK MODE
-   ===================================================== */
+/* =========================
+   SANANI O'CHIRISH
+========================= */
 
-function toggleDark() {
+function deleteDate(index) {
+
+    const date =
+        data.dates[index];
+
+
+    const confirmDelete =
+        confirm(
+            date +
+            " sanasini o‘chirmoqchimisiz?"
+        );
+
+
+    if (!confirmDelete) {
+
+        return;
+
+    }
+
+
+    data.dates.splice(index, 1);
+
+
+    data.attendance.forEach(function(row) {
+
+        if (row) {
+
+            row.splice(index, 1);
+
+        }
+
+    });
+
+
+    saveData();
+
+    render();
+
+}
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+function toggleDarkMode() {
 
     document.body.classList.toggle("dark");
 
@@ -966,15 +1051,15 @@ function toggleDark() {
     ) {
 
         localStorage.setItem(
-            "darkMode",
-            "on"
+            "davomat_dark",
+            "true"
         );
 
     } else {
 
         localStorage.setItem(
-            "darkMode",
-            "off"
+            "davomat_dark",
+            "false"
         );
 
     }
@@ -982,36 +1067,15 @@ function toggleDark() {
 }
 
 
-/* =====================================================
-   DARK MODE HOLATINI YUKLASH
-   ===================================================== */
+/* =========================
+   DARK MODENI YUKLASH
+========================= */
 
 if (
-    localStorage.getItem("darkMode") === "on"
+    localStorage.getItem("davomat_dark") === "true"
 ) {
 
     document.body.classList.add("dark");
-
-}
-
-
-/* =====================================================
-   LOGIN HOLATINI TEKSHIRISH
-   ===================================================== */
-
-if (
-    sessionStorage.getItem(
-        "davomat_logged_in"
-    ) === "true"
-) {
-
-    showJournal();
-
-} else {
-
-    document.getElementById(
-        "loginPage"
-    ).style.display = "flex";
 
 }
 
