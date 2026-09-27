@@ -606,8 +606,6 @@ th.name-column {
 
 <div class="report-container">
 
-    <!-- QIDIRUV -->
-
     <div class="search-box">
 
         <input
@@ -618,8 +616,6 @@ th.name-column {
 
     </div>
 
-
-    <!-- TABS -->
 
     <div class="report-tabs">
 
@@ -644,8 +640,6 @@ th.name-column {
 
     </div>
 
-
-    <!-- ================= O‘QUVCHILAR ================= -->
 
     <div
         id="studentsSection"
@@ -748,8 +742,6 @@ th.name-column {
 
         </div>
 
-
-        <!-- O‘QUVCHI TANLANGANDA -->
 
         <div
             id="studentDetail"
@@ -895,8 +887,6 @@ th.name-column {
     </div>
 
 
-    <!-- ================= KUNLIK ================= -->
-
     <div
         id="dailySection"
         class="report-section"
@@ -928,8 +918,6 @@ th.name-column {
     </div>
 
 
-    <!-- ================= HAFTALIK ================= -->
-
     <div
         id="weeklySection"
         class="report-section"
@@ -960,8 +948,6 @@ th.name-column {
 
     </div>
 
-
-    <!-- ================= OYLIK ================= -->
 
     <div
         id="monthlySection"
@@ -1112,13 +1098,13 @@ const endDate =
 
 const lessonsPerDay = {
 
-    0: 0, // Yakshanba
-    1: 5, // Dushanba
-    2: 6, // Seshanba
-    3: 6, // Chorshanba
-    4: 5, // Payshanba
-    5: 6, // Juma
-    6: 4  // Shanba
+    0: 0,
+    1: 5,
+    2: 6,
+    3: 6,
+    4: 5,
+    5: 6,
+    6: 4
 
 };
 
@@ -1480,6 +1466,79 @@ function updateCellColor(
 
 
 /* =====================================================
+   BUGUNGI SANAGA AVTOMATIK O‘TISH
+===================================================== */
+
+function scrollToToday() {
+
+    const today =
+        dateKey(new Date());
+
+    let targetDate =
+        today;
+
+
+    /*
+       Agar bugungi sana o‘quv yili
+       ichida bo‘lmasa, birinchi sanaga o'tadi.
+    */
+
+    if (!dates.includes(targetDate)) {
+
+        targetDate =
+            dates[0];
+
+    }
+
+
+    const todayHeader =
+        document.getElementById(
+            "date-" + targetDate
+        );
+
+
+    const wrapper =
+        document.querySelector(
+            ".table-wrapper"
+        );
+
+
+    if (
+        !todayHeader ||
+        !wrapper
+    ) {
+
+        return;
+
+    }
+
+
+    const targetLeft =
+        todayHeader.offsetLeft -
+        (wrapper.clientWidth / 2) +
+        (todayHeader.offsetWidth / 2);
+
+
+    setTimeout(function() {
+
+        wrapper.scrollTo({
+
+            left:
+                Math.max(
+                    0,
+                    targetLeft
+                ),
+
+            behavior: "smooth"
+
+        });
+
+    }, 300);
+
+}
+
+
+/* =====================================================
    JADVAL
 ===================================================== */
 
@@ -1514,6 +1573,16 @@ function renderTable() {
 
         th.textContent =
             formatDate(dateString);
+
+
+        /*
+           Bugungi sanani topish uchun
+           ID beramiz.
+        */
+
+        th.id =
+            "date-" + dateString;
+
 
         header.appendChild(th);
 
@@ -1671,6 +1740,14 @@ function renderTable() {
 
         }
     );
+
+
+    /* 
+       Jadval chizilgandan keyin
+       bugungi sanaga avtomatik o'tadi.
+    */
+
+    scrollToToday();
 
 }
 
@@ -2860,7 +2937,6 @@ if (
 
 /* =====================================================
    TUGMALARGA FUNKSIYALARNI ULASH
-   MUHIM!
 ===================================================== */
 
 document.getElementById(
