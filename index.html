@@ -55,7 +55,8 @@ input {
     margin-top: 0;
 }
 
-.login-box input[type="text"] {
+.login-box input[type="text"],
+.login-box input[type="password"] {
     width: 100%;
     padding: 13px;
     margin: 8px 0;
@@ -70,50 +71,27 @@ input {
     border-color: #555;
 }
 
-/* PAROL */
-
 .password-box {
     position: relative;
-    width: 100%;
 }
 
 .password-box input {
-    width: 100%;
-    padding: 13px;
-    padding-right: 50px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 16px;
+    padding-right: 48px !important;
 }
 
 .eye-button {
     position: absolute;
-    right: 8px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 38px !important;
-    height: 38px;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-    background: transparent !important;
-    color: #555 !important;
-    font-size: 18px !important;
+    right: 5px;
+    top: 13px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
     cursor: pointer;
+    font-size: 19px;
 }
 
-.dark .password-box input {
-    background: #2b2b2b;
-    color: white;
-    border-color: #555;
-}
-
-.dark .eye-button {
-    color: #ddd !important;
-}
-
-.login-box button.login-main-button {
+.login-box button.login-btn {
     width: 100%;
     padding: 13px;
     margin-top: 10px;
@@ -265,9 +243,47 @@ th.name-column {
 }
 
 .date-column {
-    width: 55px;
-    min-width: 55px;
+    width: 65px;
+    min-width: 65px;
 }
+
+/* ================= BUGUN ================= */
+
+.today-column {
+    background: #ff9800 !important;
+    color: white !important;
+    font-weight: bold;
+    border-left: 3px solid #e65100 !important;
+    border-right: 3px solid #e65100 !important;
+}
+
+.today-cell {
+    background: #fff3cd;
+    border-left: 2px solid #ff9800 !important;
+    border-right: 2px solid #ff9800 !important;
+}
+
+/* Dark rejimida bugungi kun OQ */
+
+.dark .today-column {
+    background: white !important;
+    color: #000 !important;
+    border-left: 3px solid white !important;
+    border-right: 3px solid white !important;
+}
+
+.dark .today-cell {
+    background: white !important;
+}
+
+/* Bugungi + va - qora */
+
+.today-cell.plus,
+.today-cell.minus {
+    color: #000 !important;
+}
+
+/* ================= DAVOMAT CELL ================= */
 
 .attendance-cell {
     width: 55px;
@@ -285,14 +301,42 @@ th.name-column {
     color: #e53935;
 }
 
+/* ================= BLOKLANGAN KUN ================= */
+
 .locked {
     background: #eeeeee;
     color: #777;
+    cursor: not-allowed;
 }
 
 .dark .locked {
     background: #333;
     color: #aaa;
+}
+
+/* Tugallangan kun */
+
+.completed-day {
+    background: #e8f5e9 !important;
+    color: #2e7d32 !important;
+    font-weight: bold;
+}
+
+.dark .completed-day {
+    background: #26352a !important;
+    color: #81c784 !important;
+}
+
+/* Bugungi sana completed bo‘lsa */
+
+.today-column.completed-day {
+    background: #ff9800 !important;
+    color: white !important;
+}
+
+.dark .today-column.completed-day {
+    background: white !important;
+    color: black !important;
 }
 
 /* ================= REPORT ================= */
@@ -507,8 +551,8 @@ th.name-column {
 
             <button
                 type="button"
-                id="togglePassword"
                 class="eye-button"
+                id="eyeButton"
             >
                 👁️
             </button>
@@ -528,7 +572,7 @@ th.name-column {
 
         <button
             id="loginButton"
-            class="login-main-button"
+            class="login-btn"
         >
             Kirish
         </button>
@@ -701,7 +745,7 @@ th.name-column {
     </div>
 
 
-    <!-- O‘QUVCHILAR -->
+    <!-- ================= O‘QUVCHILAR ================= -->
 
     <div
         id="studentsSection"
@@ -785,9 +829,13 @@ th.name-column {
                     <tr>
 
                         <th>№</th>
+
                         <th>Ism va Familya</th>
+
                         <th>🔵 Keldi</th>
+
                         <th>🔴 Qoldirdi</th>
+
                         <th>📅 Jami</th>
 
                     </tr>
@@ -945,7 +993,7 @@ th.name-column {
     </div>
 
 
-    <!-- KUNLIK -->
+    <!-- ================= KUNLIK ================= -->
 
     <div
         id="dailySection"
@@ -978,7 +1026,7 @@ th.name-column {
     </div>
 
 
-    <!-- HAFTALIK -->
+    <!-- ================= HAFTALIK ================= -->
 
     <div
         id="weeklySection"
@@ -1011,7 +1059,7 @@ th.name-column {
     </div>
 
 
-    <!-- OYLIK -->
+    <!-- ================= OYLIK ================= -->
 
     <div
         id="monthlySection"
@@ -1127,7 +1175,7 @@ const students = [
     "Muhammadsidiqova Shaxodatxon",
     "Muqimjonova Muzayyanaxon",
     "Muhammadkomilov Abduraxmon",
-    "Nishonboyeva Mo'mina ",
+    "Nishonboyeva Mo'mina",
     "O'ktamov Rahmatillo",
     "Oribjonova Robiyaxon",
     "Qosimova Rayyona",
@@ -1153,7 +1201,7 @@ const endDate =
 
 
 /* =====================================================
-   HAFTALIK DARSLAR
+   HAR KUNDA NECHTA DARS
 ===================================================== */
 
 const lessonsPerDay = {
@@ -1223,7 +1271,18 @@ const vacations = [
 ];
 
 
+/* =====================================================
+   DAVOMAT MA’LUMOTI
+===================================================== */
+
 let attendanceData = {};
+
+
+/* =====================================================
+   BLOKLANGAN SANALAR
+===================================================== */
+
+let lockedDates = {};
 
 
 /* =====================================================
@@ -1336,34 +1395,38 @@ function showMain() {
 
 
 /* =====================================================
-   PAROLNI KO‘RSATISH
+   PAROLNI KO‘RISH
 ===================================================== */
 
 document.getElementById(
-    "togglePassword"
+    "eyeButton"
 ).addEventListener(
     "click",
     function() {
 
-        const password =
+        const passwordInput =
             document.getElementById(
                 "password"
             );
 
-
         if (
-            password.type === "password"
+            passwordInput.type ===
+            "password"
         ) {
 
-            password.type = "text";
+            passwordInput.type =
+                "text";
 
-            this.textContent = "🙈";
+            this.textContent =
+                "🙈";
 
         } else {
 
-            password.type = "password";
+            passwordInput.type =
+                "password";
 
-            this.textContent = "👁️";
+            this.textContent =
+                "👁️";
 
         }
 
@@ -1390,7 +1453,7 @@ function toggleDark() {
 
 
 /* =====================================================
-   SANA
+   SANANI KEY QILISH
 ===================================================== */
 
 function dateKey(date) {
@@ -1424,10 +1487,19 @@ function formatDate(value) {
 
 
 /* =====================================================
-   LOCK
+   LOCK TEKSHIRISH
 ===================================================== */
 
 function getLockReason(dateString) {
+
+    if (
+        lockedDates[dateString]
+    ) {
+
+        return "Davomat to‘liq belgilangan";
+
+    }
+
 
     const date =
         new Date(
@@ -1475,7 +1547,7 @@ function getLockReason(dateString) {
 
 
 /* =====================================================
-   SANALAR
+   SANALAR GENERATSIYASI
 ===================================================== */
 
 function generateDates() {
@@ -1532,6 +1604,87 @@ function getAttendance(
         attendanceData[dateString][studentIndex]
         || ""
     );
+
+}
+
+
+/* =====================================================
+   KUN TO‘LIQ BELGILANGANMI?
+===================================================== */
+
+function isDayComplete(
+    dateString
+) {
+
+    if (
+        getLockReason(dateString)
+    ) {
+
+        return false;
+
+    }
+
+
+    for (
+        let i = 0;
+        i < students.length;
+        i++
+    ) {
+
+        const value =
+            getAttendance(
+                dateString,
+                i
+            );
+
+
+        if (
+            value !== "+" &&
+            value !== "-"
+        ) {
+
+            return false;
+
+        }
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =====================================================
+   KUNNI BLOKLASH
+===================================================== */
+
+function checkAndLockDay(
+    dateString
+) {
+
+    if (
+        lockedDates[dateString]
+    ) {
+
+        return false;
+
+    }
+
+
+    if (
+        isDayComplete(dateString)
+    ) {
+
+        lockedDates[dateString] =
+            true;
+
+        return true;
+
+    }
+
+
+    return false;
 
 }
 
@@ -1605,8 +1758,47 @@ function renderTable() {
             th.className =
                 "date-column";
 
-            th.textContent =
-                formatDate(dateString);
+
+            const today =
+                new Date();
+
+            const todayKey =
+                dateKey(today);
+
+
+            if (
+                dateString === todayKey
+            ) {
+
+                th.classList.add(
+                    "today-column"
+                );
+
+                th.textContent =
+                    "📅 BUGUN\n" +
+                    formatDate(dateString);
+
+            } else {
+
+                th.textContent =
+                    formatDate(dateString);
+
+            }
+
+
+            if (
+                lockedDates[dateString]
+            ) {
+
+                th.classList.add(
+                    "completed-day"
+                );
+
+                th.title =
+                    "Bu kun to‘liq belgilangan va bloklangan";
+
+            }
+
 
             header.appendChild(th);
 
@@ -1655,6 +1847,24 @@ function renderTable() {
                         "attendance-cell";
 
 
+                    const today =
+                        new Date();
+
+                    const todayKey =
+                        dateKey(today);
+
+
+                    if (
+                        dateString === todayKey
+                    ) {
+
+                        td.classList.add(
+                            "today-cell"
+                        );
+
+                    }
+
+
                     const lock =
                         getLockReason(
                             dateString
@@ -1667,8 +1877,14 @@ function renderTable() {
                             "locked"
                         );
 
+                        td.contentEditable =
+                            "false";
+
                         td.textContent =
-                            "🔒";
+                            getAttendance(
+                                dateString,
+                                studentIndex
+                            ) || "🔒";
 
                         td.title =
                             lock;
@@ -1705,6 +1921,17 @@ function renderTable() {
                         td.addEventListener(
                             "input",
                             function() {
+
+                                if (
+                                    lockedDates[
+                                        dateString
+                                    ]
+                                ) {
+
+                                    return;
+
+                                }
+
 
                                 let value =
                                     td.textContent
@@ -1749,7 +1976,22 @@ function renderTable() {
                                 );
 
 
+                                const justLocked =
+                                    checkAndLockDay(
+                                        dateString
+                                    );
+
+
                                 saveData();
+
+
+                                if (
+                                    justLocked
+                                ) {
+
+                                    renderTable();
+
+                                }
 
                             }
                         );
@@ -1780,11 +2022,16 @@ function saveData() {
     set(
         attendanceRef,
         {
+
             attendance:
                 attendanceData,
 
+            lockedDates:
+                lockedDates,
+
             updatedAt:
                 Date.now()
+
         }
     );
 
@@ -1814,6 +2061,62 @@ onValue(
         } else {
 
             attendanceData = {};
+
+        }
+
+
+        if (
+            data &&
+            data.lockedDates
+        ) {
+
+            lockedDates =
+                data.lockedDates;
+
+        } else {
+
+            lockedDates = {};
+
+        }
+
+
+        /*
+         * Eski ma'lumotlarda ham
+         * to‘liq belgilangan kunlarni
+         * avtomatik bloklaymiz.
+         */
+
+        let changed =
+            false;
+
+
+        dates.forEach(
+            dateString => {
+
+                if (
+                    !lockedDates[
+                        dateString
+                    ] &&
+                    isDayComplete(
+                        dateString
+                    )
+                ) {
+
+                    lockedDates[
+                        dateString
+                    ] = true;
+
+                    changed = true;
+
+                }
+
+            }
+        );
+
+
+        if (changed) {
+
+            saveData();
 
         }
 
@@ -1852,7 +2155,7 @@ onValue(
 
 
 /* =====================================================
-   HISOBOT
+   HISOBOTNI OCHISH
 ===================================================== */
 
 function openReport() {
@@ -1876,10 +2179,16 @@ function openReport() {
     ).style.display = "none";
 
 
-    showReportTab("students");
+    showReportTab(
+        "students"
+    );
 
 }
 
+
+/* =====================================================
+   HISOBOTNI YOPISH
+===================================================== */
 
 function closeReport() {
 
@@ -1901,10 +2210,12 @@ function closeReport() {
 function showReportTab(tab) {
 
     const sections = [
+
         "students",
         "daily",
         "weekly",
         "monthly"
+
     ];
 
 
@@ -1965,7 +2276,12 @@ function getStudentStats(index) {
         dateString => {
 
             if (
-                getLockReason(dateString)
+                getLockReason(
+                    dateString
+                ) &&
+                !lockedDates[
+                    dateString
+                ]
             ) {
 
                 return;
@@ -2004,8 +2320,11 @@ function getStudentStats(index) {
     return {
 
         plus: plus,
+
         minus: minus,
-        total: plus + minus
+
+        total:
+            plus + minus
 
     };
 
@@ -2032,15 +2351,13 @@ function getMonday(date) {
 
 
     result.setDate(
-        result.getDate() + difference
+        result.getDate() +
+        difference
     );
 
 
     result.setHours(
-        0,
-        0,
-        0,
-        0
+        0, 0, 0, 0
     );
 
 
@@ -2050,7 +2367,7 @@ function getMonday(date) {
 
 
 /* =====================================================
-   O‘QUVCHI HAFTALIK
+   TANLANGAN O‘QUVCHINING SHU HAFTASI
 ===================================================== */
 
 function getStudentWeekStats(index) {
@@ -2098,7 +2415,12 @@ function getStudentWeekStats(index) {
 
 
             if (
-                getLockReason(dateString)
+                getLockReason(
+                    dateString
+                ) &&
+                !lockedDates[
+                    dateString
+                ]
             ) {
 
                 return;
@@ -2123,7 +2445,8 @@ function getStudentWeekStats(index) {
                 value === "+"
             ) {
 
-                plus += lessonCount;
+                plus +=
+                    lessonCount;
 
             }
 
@@ -2132,7 +2455,8 @@ function getStudentWeekStats(index) {
                 value === "-"
             ) {
 
-                minus += lessonCount;
+                minus +=
+                    lessonCount;
 
             }
 
@@ -2142,7 +2466,8 @@ function getStudentWeekStats(index) {
                 value === "-"
             ) {
 
-                total += lessonCount;
+                total +=
+                    lessonCount;
 
             }
 
@@ -2160,7 +2485,7 @@ function getStudentWeekStats(index) {
 
 
 /* =====================================================
-   O‘QUVCHI OYLIK
+   TANLANGAN O‘QUVCHINING SHU OYI
 ===================================================== */
 
 function getStudentMonthStats(index) {
@@ -2192,8 +2517,10 @@ function getStudentMonthStats(index) {
 
 
             if (
-                date.getFullYear() !== year ||
-                date.getMonth() !== month
+                date.getFullYear() !==
+                    year ||
+                date.getMonth() !==
+                    month
             ) {
 
                 return;
@@ -2202,7 +2529,12 @@ function getStudentMonthStats(index) {
 
 
             if (
-                getLockReason(dateString)
+                getLockReason(
+                    dateString
+                ) &&
+                !lockedDates[
+                    dateString
+                ]
             ) {
 
                 return;
@@ -2227,7 +2559,8 @@ function getStudentMonthStats(index) {
                 value === "+"
             ) {
 
-                plus += lessonCount;
+                plus +=
+                    lessonCount;
 
             }
 
@@ -2236,7 +2569,8 @@ function getStudentMonthStats(index) {
                 value === "-"
             ) {
 
-                minus += lessonCount;
+                minus +=
+                    lessonCount;
 
             }
 
@@ -2246,7 +2580,8 @@ function getStudentMonthStats(index) {
                 value === "-"
             ) {
 
-                total += lessonCount;
+                total +=
+                    lessonCount;
 
             }
 
@@ -2264,7 +2599,7 @@ function getStudentMonthStats(index) {
 
 
 /* =====================================================
-   DETAIL
+   O‘QUVCHI DETAIL
 ===================================================== */
 
 function showStudentDetail(index) {
@@ -2285,25 +2620,29 @@ function showStudentDetail(index) {
     document.getElementById(
         "selectedStudentName"
     ).textContent =
-        "👨‍🎓 " + students[index];
+        "👨‍🎓 " +
+        students[index];
 
 
     document.getElementById(
         "selectedWeekTotal"
     ).textContent =
-        week.total + " dars";
+        week.total +
+        " dars";
 
 
     document.getElementById(
         "selectedWeekPlus"
     ).textContent =
-        week.plus + " dars";
+        week.plus +
+        " dars";
 
 
     document.getElementById(
         "selectedWeekMinus"
     ).textContent =
-        week.minus + " dars";
+        week.minus +
+        " dars";
 
 
     const weekPercent =
@@ -2319,25 +2658,29 @@ function showStudentDetail(index) {
     document.getElementById(
         "selectedWeekPercent"
     ).textContent =
-        weekPercent + "%";
+        weekPercent +
+        "%";
 
 
     document.getElementById(
         "selectedMonthTotal"
     ).textContent =
-        month.total + " dars";
+        month.total +
+        " dars";
 
 
     document.getElementById(
         "selectedMonthPlus"
     ).textContent =
-        month.plus + " dars";
+        month.plus +
+        " dars";
 
 
     document.getElementById(
         "selectedMonthMinus"
     ).textContent =
-        month.minus + " dars";
+        month.minus +
+        " dars";
 
 
     const monthPercent =
@@ -2353,7 +2696,8 @@ function showStudentDetail(index) {
     document.getElementById(
         "selectedMonthPercent"
     ).textContent =
-        monthPercent + "%";
+        monthPercent +
+        "%";
 
 }
 
@@ -2389,7 +2733,9 @@ function renderReport() {
         (student, index) => {
 
             const stats =
-                getStudentStats(index);
+                getStudentStats(
+                    index
+                );
 
 
             totalPlus +=
@@ -2412,7 +2758,9 @@ function renderReport() {
 
 
             const tr =
-                document.createElement("tr");
+                document.createElement(
+                    "tr"
+                );
 
 
             tr.style.cursor =
@@ -2483,18 +2831,21 @@ function renderReport() {
     document.getElementById(
         "totalMarked"
     ).textContent =
-        totalPlus + totalMinus;
+        totalPlus +
+        totalMinus;
 
 
     renderDailyReport();
+
     renderWeeklyReport();
+
     renderMonthlyReport();
 
 }
 
 
 /* =====================================================
-   KUNLIK
+   KUNLIK HISOBOT
 ===================================================== */
 
 function renderDailyReport() {
@@ -2512,7 +2863,12 @@ function renderDailyReport() {
         dateString => {
 
             if (
-                getLockReason(dateString)
+                getLockReason(
+                    dateString
+                ) &&
+                !lockedDates[
+                    dateString
+                ]
             ) {
 
                 return;
@@ -2569,13 +2925,17 @@ function renderDailyReport() {
 
 
             const tr =
-                document.createElement("tr");
+                document.createElement(
+                    "tr"
+                );
 
 
             tr.innerHTML = `
 
                 <td>
-                    ${formatDate(dateString)}
+                    ${formatDate(
+                        dateString
+                    )}
                 </td>
 
                 <td class="blue">
@@ -2602,7 +2962,7 @@ function renderDailyReport() {
 
 
 /* =====================================================
-   HAFTALIK
+   HAFTALIK HISOBOT
 ===================================================== */
 
 function renderWeeklyReport() {
@@ -2623,7 +2983,12 @@ function renderWeeklyReport() {
         dateString => {
 
             if (
-                getLockReason(dateString)
+                getLockReason(
+                    dateString
+                ) &&
+                !lockedDates[
+                    dateString
+                ]
             ) {
 
                 return;
@@ -2744,12 +3109,15 @@ function renderWeeklyReport() {
 
 
                 saturday.setDate(
-                    saturday.getDate() + 5
+                    saturday.getDate() +
+                    5
                 );
 
 
                 const tr =
-                    document.createElement("tr");
+                    document.createElement(
+                        "tr"
+                    );
 
 
                 tr.innerHTML = `
@@ -2758,7 +3126,9 @@ function renderWeeklyReport() {
                         ${formatDate(key)}
                         —
                         ${formatDate(
-                            dateKey(saturday)
+                            dateKey(
+                                saturday
+                            )
                         )}
                     </td>
 
@@ -2786,7 +3156,7 @@ function renderWeeklyReport() {
 
 
 /* =====================================================
-   OYLAR
+   OY NOMLARI
 ===================================================== */
 
 const monthNames = [
@@ -2808,7 +3178,7 @@ const monthNames = [
 
 
 /* =====================================================
-   OYLIK
+   OYLIK HISOBOT
 ===================================================== */
 
 function renderMonthlyReport() {
@@ -2829,7 +3199,12 @@ function renderMonthlyReport() {
         dateString => {
 
             if (
-                getLockReason(dateString)
+                getLockReason(
+                    dateString
+                ) &&
+                !lockedDates[
+                    dateString
+                ]
             ) {
 
                 return;
@@ -2946,13 +3321,17 @@ function renderMonthlyReport() {
 
 
                 const tr =
-                    document.createElement("tr");
+                    document.createElement(
+                        "tr"
+                    );
 
 
                 tr.innerHTML = `
 
                     <td>
-                        ${monthNames[data.month]}
+                        ${monthNames[
+                            data.month
+                        ]}
                         ${data.year}
                     </td>
 
@@ -3079,7 +3458,9 @@ document.getElementById(
     "click",
     function() {
 
-        showReportTab("students");
+        showReportTab(
+            "students"
+        );
 
     }
 );
@@ -3091,7 +3472,9 @@ document.getElementById(
     "click",
     function() {
 
-        showReportTab("daily");
+        showReportTab(
+            "daily"
+        );
 
     }
 );
@@ -3103,7 +3486,9 @@ document.getElementById(
     "click",
     function() {
 
-        showReportTab("weekly");
+        showReportTab(
+            "weekly"
+        );
 
     }
 );
@@ -3115,7 +3500,9 @@ document.getElementById(
     "click",
     function() {
 
-        showReportTab("monthly");
+        showReportTab(
+            "monthly"
+        );
 
     }
 );
@@ -3129,7 +3516,7 @@ document.getElementById(
 );
 
 
-/* ENTER */
+/* ENTER BILAN LOGIN */
 
 document.getElementById(
     "password"
@@ -3149,7 +3536,7 @@ document.getElementById(
 );
 
 
-/* JADVAL */
+/* JADVALNI DASTLAB CHIZISH */
 
 renderTable();
 
