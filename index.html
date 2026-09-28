@@ -253,6 +253,17 @@ th.name-column {
     color: #aaa;
 }
 
+/* BUGUNGI SANA */
+
+.today-column {
+    background: rgba(255, 193, 7, 0.20) !important;
+}
+
+.today-header {
+    background: #f57c00 !important;
+    color: white !important;
+}
+
 /* ================= REPORT ================= */
 
 .search-box {
@@ -546,7 +557,7 @@ th.name-column {
     </div>
 
 
-    <div class="table-wrapper">
+    <div class="table-wrapper" id="mainTableWrapper">
 
         <table>
 
@@ -640,6 +651,8 @@ th.name-column {
 
     </div>
 
+
+    <!-- O‘QUVCHILAR -->
 
     <div
         id="studentsSection"
@@ -887,6 +900,8 @@ th.name-column {
     </div>
 
 
+    <!-- KUNLIK -->
+
     <div
         id="dailySection"
         class="report-section"
@@ -918,6 +933,8 @@ th.name-column {
     </div>
 
 
+    <!-- HAFTALIK -->
+
     <div
         id="weeklySection"
         class="report-section"
@@ -948,6 +965,8 @@ th.name-column {
 
     </div>
 
+
+    <!-- OYLIK -->
 
     <div
         id="monthlySection"
@@ -990,10 +1009,6 @@ th.name-column {
 
 <script type="module">
 
-/* =====================================================
-   FIREBASE
-===================================================== */
-
 import {
     initializeApp
 }
@@ -1007,6 +1022,10 @@ import {
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
+
+/* =====================================================
+   FIREBASE
+===================================================== */
 
 const firebaseConfig = {
 
@@ -1055,7 +1074,7 @@ const students = [
     "Abdumannobova Ruqiyaxon",
     "Abdumutallibov Muhammadali",
     "Abdug‘afforova Muslimaxon",
-    "Anvarova Muharram",
+    "Abvarova Muharram",
     "Arabbekova Ruqiyaxon",
     "Baxromova Xabibaxon",
     "Baxodirjonova Kimyoxon",
@@ -1075,7 +1094,7 @@ const students = [
     "Soyibjonova Mohlaroy",
     "Ubaydullayeva Bibisora",
     "Yaqubov Abdulboriy",
-    "Yuldashboyeva Rayyona",
+    "Yuldasheva Muhlisaxon",
     "Yuldasheva Muhlisaxon"
 
 ];
@@ -1093,7 +1112,7 @@ const endDate =
 
 
 /* =====================================================
-   HAR KUNDA NECHTA DARS
+   DARS SOATLARI
 ===================================================== */
 
 const lessonsPerDay = {
@@ -1164,7 +1183,7 @@ const vacations = [
 
 
 /* =====================================================
-   DAVOMAT MA’LUMOTI
+   DAVOMAT
 ===================================================== */
 
 let attendanceData = {};
@@ -1276,6 +1295,17 @@ function showMain() {
         "mainPage"
     ).style.display = "block";
 
+
+    /*
+       MUHIM:
+       Kirganda bugungi sanaga avtomatik o'tadi.
+    */
+
+    setTimeout(
+        scrollToToday,
+        300
+    );
+
 }
 
 
@@ -1298,7 +1328,7 @@ function toggleDark() {
 
 
 /* =====================================================
-   SANANI KEY QILISH
+   SANA KEY
 ===================================================== */
 
 function dateKey(date) {
@@ -1332,7 +1362,7 @@ function formatDate(value) {
 
 
 /* =====================================================
-   LOCK TEKSHIRISH
+   LOCK
 ===================================================== */
 
 function getLockReason(dateString) {
@@ -1377,7 +1407,7 @@ function getLockReason(dateString) {
 
 
 /* =====================================================
-   SANALAR GENERATSIYASI
+   SANALAR
 ===================================================== */
 
 function generateDates() {
@@ -1411,7 +1441,80 @@ const dates =
 
 
 /* =====================================================
-   DAVOMATNI OLISH
+   BUGUNGI SANANI TOPISH
+===================================================== */
+
+function getTodayKey() {
+
+    const today =
+        new Date();
+
+    return dateKey(today);
+
+}
+
+
+/* =====================================================
+   BUGUNGI SANAGA AVTOMATIK O‘TISH
+===================================================== */
+
+function scrollToToday() {
+
+    const today =
+        getTodayKey();
+
+
+    const todayElement =
+        document.querySelector(
+            `[data-date="${today}"]`
+        );
+
+
+    if (!todayElement) {
+
+        return;
+
+    }
+
+
+    const wrapper =
+        document.getElementById(
+            "mainTableWrapper"
+        );
+
+
+    if (!wrapper) {
+
+        return;
+
+    }
+
+
+    /*
+       Bugungi ustunni chap tomonga
+       avtomatik olib keladi.
+    */
+
+    const left =
+        todayElement.offsetLeft
+        - 210;
+
+
+    wrapper.scrollTo({
+
+        left:
+            Math.max(0, left),
+
+        behavior:
+            "smooth"
+
+    });
+
+}
+
+
+/* =====================================================
+   DAVOMAT OLISH
 ===================================================== */
 
 function getAttendance(
@@ -1466,79 +1569,6 @@ function updateCellColor(
 
 
 /* =====================================================
-   BUGUNGI SANAGA AVTOMATIK O‘TISH
-===================================================== */
-
-function scrollToToday() {
-
-    const today =
-        dateKey(new Date());
-
-    let targetDate =
-        today;
-
-
-    /*
-       Agar bugungi sana o‘quv yili
-       ichida bo‘lmasa, birinchi sanaga o'tadi.
-    */
-
-    if (!dates.includes(targetDate)) {
-
-        targetDate =
-            dates[0];
-
-    }
-
-
-    const todayHeader =
-        document.getElementById(
-            "date-" + targetDate
-        );
-
-
-    const wrapper =
-        document.querySelector(
-            ".table-wrapper"
-        );
-
-
-    if (
-        !todayHeader ||
-        !wrapper
-    ) {
-
-        return;
-
-    }
-
-
-    const targetLeft =
-        todayHeader.offsetLeft -
-        (wrapper.clientWidth / 2) +
-        (todayHeader.offsetWidth / 2);
-
-
-    setTimeout(function() {
-
-        wrapper.scrollTo({
-
-            left:
-                Math.max(
-                    0,
-                    targetLeft
-                ),
-
-            behavior: "smooth"
-
-        });
-
-    }, 300);
-
-}
-
-
-/* =====================================================
    JADVAL
 ===================================================== */
 
@@ -1563,6 +1593,10 @@ function renderTable() {
     `;
 
 
+    const today =
+        getTodayKey();
+
+
     dates.forEach(dateString => {
 
         const th =
@@ -1575,13 +1609,19 @@ function renderTable() {
             formatDate(dateString);
 
 
-        /*
-           Bugungi sanani topish uchun
-           ID beramiz.
-        */
+        /* BUGUNGI SANA */
 
-        th.id =
-            "date-" + dateString;
+        th.dataset.date =
+            dateString;
+
+
+        if (dateString === today) {
+
+            th.classList.add(
+                "today-header"
+            );
+
+        }
 
 
         header.appendChild(th);
@@ -1627,6 +1667,19 @@ function renderTable() {
 
                 td.className =
                     "attendance-cell";
+
+
+                /*
+                   BUGUNGI SANA USTUNI
+                */
+
+                if (dateString === today) {
+
+                    td.classList.add(
+                        "today-column"
+                    );
+
+                }
 
 
                 const lock =
@@ -1741,14 +1794,6 @@ function renderTable() {
         }
     );
 
-
-    /* 
-       Jadval chizilgandan keyin
-       bugungi sanaga avtomatik o'tadi.
-    */
-
-    scrollToToday();
-
 }
 
 
@@ -1806,6 +1851,25 @@ onValue(
             "firebaseStatus"
         ).textContent =
             "🟢 Firebase bilan sinxronlangan.";
+
+
+        /*
+           Firebase ma'lumotlari kelgandan keyin
+           ham bugungi sanaga o'tadi.
+        */
+
+        if (
+            document.getElementById(
+                "mainPage"
+            ).style.display === "block"
+        ) {
+
+            setTimeout(
+                scrollToToday,
+                100
+            );
+
+        }
 
 
         if (
@@ -1875,6 +1939,12 @@ function closeReport() {
     document.getElementById(
         "mainPage"
     ).style.display = "block";
+
+
+    setTimeout(
+        scrollToToday,
+        100
+    );
 
 }
 
@@ -2015,7 +2085,7 @@ function getMonday(date) {
 
 
 /* =====================================================
-   TANLANGAN O‘QUVCHINING SHU HAFTASI
+   SHU HAFTA
 ===================================================== */
 
 function getStudentWeekStats(index) {
@@ -2118,7 +2188,7 @@ function getStudentWeekStats(index) {
 
 
 /* =====================================================
-   TANLANGAN O‘QUVCHINING SHU OYI
+   SHU OY
 ===================================================== */
 
 function getStudentMonthStats(index) {
@@ -2309,7 +2379,7 @@ function showStudentDetail(index) {
 
 
 /* =====================================================
-   ASOSIY HISOBOT
+   HISOBOT
 ===================================================== */
 
 function renderReport() {
@@ -2444,7 +2514,7 @@ function renderReport() {
 
 
 /* =====================================================
-   KUNLIK HISOBOT
+   KUNLIK
 ===================================================== */
 
 function renderDailyReport() {
@@ -2544,7 +2614,7 @@ function renderDailyReport() {
 
 
 /* =====================================================
-   HAFTALIK HISOBOT
+   HAFTALIK
 ===================================================== */
 
 function renderWeeklyReport() {
@@ -2736,7 +2806,7 @@ const monthNames = [
 
 
 /* =====================================================
-   OYLIK HISOBOT
+   OYLIK
 ===================================================== */
 
 function renderMonthlyReport() {
@@ -2895,7 +2965,7 @@ function renderMonthlyReport() {
 
 
 /* =====================================================
-   DARK MODE NI YUKLASH
+   DARK MODE YUKLASH
 ===================================================== */
 
 if (
@@ -2912,7 +2982,7 @@ if (
 
 
 /* =====================================================
-   LOGINNI TEKSHIRISH
+   LOGIN TEKSHIRISH
 ===================================================== */
 
 if (
@@ -2936,7 +3006,7 @@ if (
 
 
 /* =====================================================
-   TUGMALARGA FUNKSIYALARNI ULASH
+   TUGMALAR
 ===================================================== */
 
 document.getElementById(
@@ -3043,7 +3113,7 @@ document.getElementById(
 );
 
 
-/* ENTER BILAN LOGIN */
+/* ENTER */
 
 document.getElementById(
     "password"
@@ -3061,9 +3131,21 @@ document.getElementById(
 );
 
 
-/* JADVALNI DASTLAB CHIZISH */
+/* =====================================================
+   JADVALNI DASTLAB CHIZISH
+===================================================== */
 
 renderTable();
+
+
+/* =====================================================
+   SAYT OCHILGANDA BUGUNGI SANAGA O‘TISH
+===================================================== */
+
+setTimeout(
+    scrollToToday,
+    500
+);
 
 </script>
 
