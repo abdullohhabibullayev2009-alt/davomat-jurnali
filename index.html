@@ -55,6 +55,7 @@ input {
     margin-top: 0;
 }
 
+.login-box input[type="text"],
 .login-box input[type="email"],
 .login-box input[type="password"] {
     width: 100%;
@@ -439,9 +440,7 @@ th.name-column {
 
 <body>
 
-<!-- =====================================================
-     LOGIN
-===================================================== -->
+<!-- ================= LOGIN ================= -->
 
 <div id="loginPage">
 
@@ -451,7 +450,7 @@ th.name-column {
 
         <input
             type="email"
-            id="email"
+            id="username"
             placeholder="Email"
             autocomplete="email"
         >
@@ -464,15 +463,11 @@ th.name-column {
         >
 
         <label class="remember">
-
             <input
                 type="checkbox"
                 id="rememberLogin"
-                checked
             >
-
             Loginni eslab qolish
-
         </label>
 
         <button id="loginButton">
@@ -486,9 +481,7 @@ th.name-column {
 </div>
 
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
+<!-- ================= MAIN ================= -->
 
 <div id="mainPage">
 
@@ -581,9 +574,7 @@ th.name-column {
 </div>
 
 
-<!-- =====================================================
-     REPORT
-===================================================== -->
+<!-- ================= REPORT ================= -->
 
 <div id="reportPage">
 
@@ -625,10 +616,7 @@ th.name-column {
 
     <div class="report-tabs">
 
-        <button
-            id="tabStudents"
-            class="active"
-        >
+        <button id="tabStudents" class="active">
             👨‍🎓 O‘quvchilar
         </button>
 
@@ -647,7 +635,7 @@ th.name-column {
     </div>
 
 
-    <!-- ================= O‘QUVCHILAR ================= -->
+    <!-- O‘QUVCHILAR -->
 
     <div
         id="studentsSection"
@@ -758,106 +746,130 @@ th.name-column {
             <div class="detail-grid">
 
                 <div class="detail-card">
+
                     <div class="title">
                         📆 Shu hafta jami dars
                     </div>
+
                     <div
                         class="value"
                         id="selectedWeekTotal"
                     >
                         0
                     </div>
+
                 </div>
 
 
                 <div class="detail-card">
+
                     <div class="title">
                         🔵 Shu hafta kelgan
                     </div>
+
                     <div
                         class="value blue"
                         id="selectedWeekPlus"
                     >
                         0
                     </div>
+
                 </div>
 
 
                 <div class="detail-card">
+
                     <div class="title">
                         🔴 Shu hafta qoldirgan
                     </div>
+
                     <div
                         class="value red"
                         id="selectedWeekMinus"
                     >
                         0
                     </div>
+
                 </div>
 
 
                 <div class="detail-card">
+
                     <div class="title">
                         📊 Haftalik davomat
                     </div>
+
                     <div
                         class="value green"
                         id="selectedWeekPercent"
                     >
                         0%
                     </div>
+
                 </div>
 
 
                 <div class="detail-card">
+
                     <div class="title">
                         🗓️ Shu oy jami dars
                     </div>
+
                     <div
                         class="value"
                         id="selectedMonthTotal"
                     >
                         0
                     </div>
+
                 </div>
 
 
                 <div class="detail-card">
+
                     <div class="title">
                         🔵 Shu oy kelgan
                     </div>
+
                     <div
                         class="value blue"
                         id="selectedMonthPlus"
                     >
                         0
                     </div>
+
                 </div>
 
 
                 <div class="detail-card">
+
                     <div class="title">
                         🔴 Shu oy qoldirgan
                     </div>
+
                     <div
                         class="value red"
                         id="selectedMonthMinus"
                     >
                         0
                     </div>
+
                 </div>
 
 
                 <div class="detail-card">
+
                     <div class="title">
                         📊 Oylik davomat
                     </div>
+
                     <div
                         class="value green"
                         id="selectedMonthPercent"
                     >
                         0%
                     </div>
+
                 </div>
 
             </div>
@@ -867,7 +879,7 @@ th.name-column {
     </div>
 
 
-    <!-- ================= KUNLIK ================= -->
+    <!-- KUNLIK -->
 
     <div
         id="dailySection"
@@ -881,10 +893,12 @@ th.name-column {
                 <thead>
 
                     <tr>
+
                         <th>Sana</th>
                         <th>🔵 Kelgan</th>
                         <th>🔴 Qolgan</th>
                         <th>📊 Jami</th>
+
                     </tr>
 
                 </thead>
@@ -898,7 +912,7 @@ th.name-column {
     </div>
 
 
-    <!-- ================= HAFTALIK ================= -->
+    <!-- HAFTALIK -->
 
     <div
         id="weeklySection"
@@ -912,10 +926,12 @@ th.name-column {
                 <thead>
 
                     <tr>
+
                         <th>Hafta</th>
                         <th>🔵 Kelgan</th>
                         <th>🔴 Qolgan</th>
                         <th>📊 Jami</th>
+
                     </tr>
 
                 </thead>
@@ -929,7 +945,7 @@ th.name-column {
     </div>
 
 
-    <!-- ================= OYLIK ================= -->
+    <!-- OYLIK -->
 
     <div
         id="monthlySection"
@@ -943,10 +959,12 @@ th.name-column {
                 <thead>
 
                     <tr>
+
                         <th>Oy</th>
                         <th>🔵 Kelgan</th>
                         <th>🔴 Qolgan</th>
                         <th>📊 Jami</th>
+
                     </tr>
 
                 </thead>
@@ -964,9 +982,7 @@ th.name-column {
 </div>
 
 
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
+<!-- ================= JAVASCRIPT ================= -->
 
 <script type="module">
 
@@ -987,19 +1003,14 @@ import {
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-
-/* =====================================================
-   FIREBASE AUTHENTICATION
-===================================================== */
-
 import {
     getAuth,
     signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged,
     setPersistence,
     browserLocalPersistence,
-    browserSessionPersistence
+    browserSessionPersistence,
+    onAuthStateChanged,
+    signOut
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
@@ -1040,19 +1051,16 @@ const app =
     initializeApp(firebaseConfig);
 
 
-/* DATABASE */
-
 const db =
     getDatabase(app);
 
-const attendanceRef =
-    ref(db, "davomat_jurnali");
-
-
-/* AUTHENTICATION */
 
 const auth =
     getAuth(app);
+
+
+const attendanceRef =
+    ref(db, "davomat_jurnali");
 
 
 /* =====================================================
@@ -1076,7 +1084,7 @@ const students = [
     "Muhammadsidiqova Shaxodatxon",
     "Muqimjonova Muzayyanaxon",
     "Muhammadkomilov Abduraxmon",
-    "Nishonboyeva Mo'mina ",
+    "Nishonboyeva Mo'mina",
     "O'ktamov Rahmatillo",
     "Oribjonova Robiyaxon",
     "Qosimova Rayyona",
@@ -1103,18 +1111,17 @@ const endDate =
 
 /* =====================================================
    HAFTADAGI DARS SOATLARI
-   JAMI = 32 SOAT
 ===================================================== */
 
 const lessonsPerDay = {
 
-    0: 0, // Yakshanba
-    1: 5, // Dushanba
-    2: 6, // Seshanba
-    3: 6, // Chorshanba
-    4: 5, // Payshanba
-    5: 6, // Juma
-    6: 4  // Shanba
+    0: 0,
+    1: 5,
+    2: 6,
+    3: 6,
+    4: 5,
+    5: 6,
+    6: 4
 
 };
 
@@ -1174,20 +1181,20 @@ const vacations = [
 
 
 /* =====================================================
-   DAVOMAT MA’LUMOTI
+   DAVOMAT
 ===================================================== */
 
 let attendanceData = {};
 
 
 /* =====================================================
-   FIREBASE AUTH LOGIN
+   LOGIN
 ===================================================== */
 
 async function login() {
 
     const email =
-        document.getElementById("email")
+        document.getElementById("username")
         .value
         .trim();
 
@@ -1209,7 +1216,7 @@ async function login() {
     if (!email || !password) {
 
         errorBox.textContent =
-            "Email va parolni kiriting!";
+            "Email va parolni kiriting.";
 
         return;
 
@@ -1218,19 +1225,21 @@ async function login() {
 
     try {
 
-        /*
-         * Loginni eslab qolish:
-         *
-         * checked = brauzerda saqlanadi
-         * unchecked = faqat shu sessiyada
-         */
+        if (remember) {
 
-        await setPersistence(
-            auth,
-            remember
-                ? browserLocalPersistence
-                : browserSessionPersistence
-        );
+            await setPersistence(
+                auth,
+                browserLocalPersistence
+            );
+
+        } else {
+
+            await setPersistence(
+                auth,
+                browserSessionPersistence
+            );
+
+        }
 
 
         await signInWithEmailAndPassword(
@@ -1238,9 +1247,6 @@ async function login() {
             email,
             password
         );
-
-
-        errorBox.textContent = "";
 
 
     } catch (error) {
@@ -1254,25 +1260,31 @@ async function login() {
         ) {
 
             errorBox.textContent =
-                "Email yoki parol noto‘g‘ri!";
+                "Email yoki parol noto‘g‘ri.";
 
-        } else if (
+        }
+
+        else if (
             error.code ===
             "auth/invalid-email"
         ) {
 
             errorBox.textContent =
-                "Email noto‘g‘ri formatda!";
+                "Email manzilini to‘g‘ri kiriting.";
 
-        } else if (
+        }
+
+        else if (
             error.code ===
             "auth/too-many-requests"
         ) {
 
             errorBox.textContent =
-                "Juda ko‘p urinish bo‘ldi. Keyinroq urinib ko‘ring.";
+                "Juda ko‘p urinish bo‘ldi. Biroz kuting.";
 
-        } else {
+        }
+
+        else {
 
             errorBox.textContent =
                 "Kirishda xatolik: " +
@@ -1286,7 +1298,7 @@ async function login() {
 
 
 /* =====================================================
-   FIREBASE LOGOUT
+   LOGOUT
 ===================================================== */
 
 async function logout() {
@@ -1297,10 +1309,7 @@ async function logout() {
 
     } catch (error) {
 
-        console.error(
-            "Chiqishda xatolik:",
-            error
-        );
+        console.error(error);
 
     }
 
@@ -1308,7 +1317,7 @@ async function logout() {
 
 
 /* =====================================================
-   ASOSIY SAHIFANI KO‘RSATISH
+   SAHIFANI KO‘RSATISH
 ===================================================== */
 
 function showMain() {
@@ -1328,10 +1337,6 @@ function showMain() {
 }
 
 
-/* =====================================================
-   LOGIN SAHIFASINI KO‘RSATISH
-===================================================== */
-
 function showLogin() {
 
     document.getElementById(
@@ -1350,7 +1355,7 @@ function showLogin() {
 
 
 /* =====================================================
-   FIREBASE AUTH HOLATINI KUZATISH
+   FIREBASE AUTH HOLATINI TEKSHIRISH
 ===================================================== */
 
 onAuthStateChanged(
@@ -1359,18 +1364,9 @@ onAuthStateChanged(
 
         if (user) {
 
-            /*
-             * Firebase foydalanuvchini
-             * tasdiqladi.
-             */
-
             showMain();
 
         } else {
-
-            /*
-             * Login qilinmagan.
-             */
 
             showLogin();
 
@@ -1386,9 +1382,7 @@ onAuthStateChanged(
 
 function toggleDark() {
 
-    document.body.classList.toggle(
-        "dark"
-    );
+    document.body.classList.toggle("dark");
 
     localStorage.setItem(
         "davomat_dark",
@@ -1399,7 +1393,7 @@ function toggleDark() {
 
 
 /* =====================================================
-   SANA KEY
+   DATE KEY
 ===================================================== */
 
 function dateKey(date) {
@@ -1422,10 +1416,6 @@ function dateKey(date) {
 }
 
 
-/* =====================================================
-   SANANI KO‘RSATISH
-===================================================== */
-
 function formatDate(value) {
 
     const p =
@@ -1437,7 +1427,7 @@ function formatDate(value) {
 
 
 /* =====================================================
-   LOCK TEKSHIRISH
+   LOCK
 ===================================================== */
 
 function getLockReason(dateString) {
@@ -1482,7 +1472,7 @@ function getLockReason(dateString) {
 
 
 /* =====================================================
-   SANALAR GENERATSIYASI
+   SANALAR
 ===================================================== */
 
 function generateDates() {
@@ -1571,7 +1561,7 @@ function updateCellColor(
 
 
 /* =====================================================
-   JADVALNI CHIZISH
+   JADVAL
 ===================================================== */
 
 function renderTable() {
@@ -1781,20 +1771,7 @@ function saveData() {
             updatedAt:
                 Date.now()
         }
-    )
-    .catch(error => {
-
-        console.error(
-            "Saqlashda xatolik:",
-            error
-        );
-
-        document.getElementById(
-            "firebaseStatus"
-        ).textContent =
-            "🔴 Ma'lumotni saqlashda xatolik.";
-
-    });
+    );
 
 }
 
@@ -1843,10 +1820,15 @@ onValue(
         }
 
 
-        if (
+        const reportPage =
             document.getElementById(
                 "reportPage"
-            ).style.display === "block"
+            );
+
+
+        if (
+            reportPage &&
+            reportPage.style.display === "block"
         ) {
 
             renderReport();
@@ -1854,14 +1836,23 @@ onValue(
         }
 
     },
+
     error => {
 
         console.error(error);
 
-        document.getElementById(
-            "firebaseStatus"
-        ).textContent =
-            "🔴 Firebase ulanishida xatolik.";
+        const status =
+            document.getElementById(
+                "firebaseStatus"
+            );
+
+
+        if (status) {
+
+            status.textContent =
+                "🔴 Firebase ulanishida xatolik.";
+
+        }
 
     }
 );
@@ -1915,7 +1906,7 @@ function closeReport() {
 
 
 /* =====================================================
-   REPORT TAB
+   TAB
 ===================================================== */
 
 function showReportTab(tab) {
@@ -1933,7 +1924,6 @@ function showReportTab(tab) {
         document.getElementById(
             name + "Section"
         ).classList.remove("active");
-
 
         document.getElementById(
             "tab" +
@@ -2051,7 +2041,7 @@ function getMonday(date) {
 
 
 /* =====================================================
-   O‘QUVCHINING SHU HAFTASI
+   O‘QUVCHI HAFTALIK HISOB
 ===================================================== */
 
 function getStudentWeekStats(index) {
@@ -2154,7 +2144,7 @@ function getStudentWeekStats(index) {
 
 
 /* =====================================================
-   O‘QUVCHINING SHU OYI
+   O‘QUVCHI OYLIK HISOB
 ===================================================== */
 
 function getStudentMonthStats(index) {
@@ -2931,7 +2921,7 @@ function renderMonthlyReport() {
 
 
 /* =====================================================
-   DARK MODE NI YUKLASH
+   DARK MODE YUKLASH
 ===================================================== */
 
 if (
@@ -3076,7 +3066,7 @@ document.getElementById(
 
 
 /* =====================================================
-   JADVALNI DASTLAB CHIZISH
+   JADVAL
 ===================================================== */
 
 renderTable();
